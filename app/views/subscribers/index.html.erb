@@ -1,0 +1,67 @@
+<div class="wrapper wrapper-content">
+    <div class="row">
+        <div class="col-lg-4 subscribe-panel" >
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Artist Sales</h5>
+                </div>
+                <div class="ibox-content">
+                    <h1 class="no-margins artist-sales">$0</h1>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 subscribe-panel">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Trial Subscribers</h5>
+                </div>
+                <div class="ibox-content">
+                    <h1 class="no-margins trial-subscribers">0</h1>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 subscribe-panel">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Full Subscribers</h5>
+                </div>
+                <div class="ibox-content">
+                    <h1 class="no-margins full-subscribers">0</h1>
+                </div>
+            </div>
+        </div>
+        <!-- <div class="col-lg-3 subscribe-panel">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Subscription Revenue</h5>
+                </div>
+                <div class="ibox-content">
+                    <h1 class="no-margins subscription-revenue">0</h1>
+                </div>
+            </div>
+        </div> -->
+    <!-- <div class="row">
+        <div class="col-lg-12">
+            <div class="panel">
+                <div class="panel-heading">
+                    <div class="ibox-tools">
+                    <a class="collapse-link">
+                        <i class="fa fa-chevron-down"></i>
+                    </a>
+                </div>
+                    Subscribers
+                </div>
+                <div class="panel-body list">
+                    <div id="item-data" class="table-responsive project-list">
+                        Loading Items...
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> -->
+    <div id="subscribers">Loading Subscribers...</div>
+</div>
+
+<%= javascript_tag do %>
+    window.mct = '<%= @api_token %>'
+<% end %>

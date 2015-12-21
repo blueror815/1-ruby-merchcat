@@ -1,0 +1,131 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet" xmlns:html="http://www.w3.org/TR/REC-html40" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet" xmlns:x="urn:schemas-microsoft-com:office:excel">
+<DocumentProperties xmlns="urn:schemas-microsoft-com:office:office">
+<Author xmlns="urn:schemas-microsoft-com:office:office">ewoychowsky</Author>
+<Company xmlns="urn:schemas-microsoft-com:office:office">EAW</Company>
+<Version xmlns="urn:schemas-microsoft-com:office:office">10.4219</Version>
+</DocumentProperties>
+<OfficeDocumentSettings xmlns="urn:schemas-microsoft-com:office:office">
+<DownloadComponents xmlns="urn:schemas-microsoft-com:office:office" />
+<LocationOfComponents xmlns="urn:schemas-microsoft-com:office:office" HRef="file:///\\phlfsnt01\DOWNLOAD\OfficeXPSrc\" />
+</OfficeDocumentSettings>
+<ExcelWorkbook xmlns="urn:schemas-microsoft-com:office:excel">
+<WindowHeight xmlns="urn:schemas-microsoft-com:office:excel">9210</WindowHeight>
+<WindowWidth xmlns="urn:schemas-microsoft-com:office:excel">15195</WindowWidth>
+<WindowTopX xmlns="urn:schemas-microsoft-com:office:excel">0</WindowTopX>
+<WindowTopY xmlns="urn:schemas-microsoft-com:office:excel">60</WindowTopY>
+<ProtectStructure xmlns="urn:schemas-microsoft-com:office:excel">False</ProtectStructure>
+<ProtectWindows xmlns="urn:schemas-microsoft-com:office:excel">False</ProtectWindows>
+</ExcelWorkbook>
+<Styles>
+<Style ss:ID="Default" ss:Name="Normal">
+<Alignment ss:Vertical="Bottom" />
+<Borders />
+<Font />
+<Interior />
+<NumberFormat />
+<Protection />
+</Style>
+</Styles>
+<Worksheet ss:Name="Sheet1">
+<Table ss:ExpandedColumnCount="20" ss:ExpandedRowCount="250" x:FullColumns="1" x:FullRows="1">
+	<Row>
+		<Cell><Data ss:Type="String">Show Settlement Report</Data></Cell>
+	</Row>
+	<Row>
+	</Row>
+	<Row>
+		<Cell><Data ss:Type="String">Date</Data></Cell>
+		<Cell><Data ss:Type="String"><%= Time.parse(@show['date']).strftime("%m/%d/%y")%></Data></Cell>
+	</Row>
+	<Row>
+		<Cell><Data ss:Type="String">Venue</Data></Cell>
+		<Cell><Data ss:Type="String"><%= @show['venue']['name'] %></Data></Cell>
+	</Row>
+	<Row>
+		<Cell><Data ss:Type="String">City</Data></Cell>
+		<Cell><Data ss:Type="String"><%= @show['venue']['state'] %></Data></Cell>
+	</Row>
+	<Row>
+		<Cell><Data ss:Type="String">Total Attendance</Data></Cell>
+	</Row>
+	<Row>
+		<Cell><Data ss:Type="String">Venue Capacity</Data></Cell>
+	</Row>
+	<Row>
+	</Row>
+	<Row>
+		<Cell><Data ss:Type="String">Gross Sales</Data></Cell>
+		<Cell><Data ss:Type="String"><%= @show['sales_amount'] ? format("%.2f", @show['sales_amount']) : 0%></Data></Cell>
+	</Row>
+	<Row>
+		<Cell><Data ss:Type="String">Venue Cut %</Data></Cell>
+		<Cell><Data ss:Type="String"><%= @show['venue_cut'] %>%</Data></Cell>
+	</Row>
+	<Row>
+		<Cell><Data ss:Type="String">Venue Cut Amount</Data></Cell>
+		<Cell><Data ss:Type="String"><%= format("%.2f", @show['sales_amount'].to_f * (@show['venue_cut'].to_i * 0.01)) %></Data></Cell>
+	</Row>
+	<Row>
+		<Cell><Data ss:Type="String">Net Sales</Data></Cell>
+		<Cell><Data ss:Type="String"><%= format("%.2f", @show['sales_amount'].to_f - @show['sales_amount'].to_f * (@show['venue_cut'].to_i * 0.01)) %></Data></Cell>
+	</Row>
+
+	<Row>
+	</Row>
+	<Row>
+		<Cell><Data ss:Type="String">#</Data></Cell>
+		<Cell><Data ss:Type="String">Qty</Data></Cell>
+		<Cell><Data ss:Type="String">Name</Data></Cell>
+		<Cell><Data ss:Type="String">UPC</Data></Cell>
+		<Cell><Data ss:Type="String">Item Price</Data></Cell>
+		<Cell><Data ss:Type="String">Total</Data></Cell>
+	</Row>
+
+	<% (1..@items.length).each do |i| %>
+		<Row>
+		<% @item = @items[i-1] %>
+			<Cell><Data ss:Type="Number"><%= @item['item']['id'] %></Data></Cell>
+			<Cell><Data ss:Type="Number"><%= @item['quantity_in_cart'] %></Data></Cell>
+			<Cell><Data ss:Type="String"><%= @item['item']['nickname'] %></Data></Cell>
+			<Cell><Data ss:Type="Number"><%= @item['item']['sku'] %></Data></Cell>
+			<Cell><Data ss:Type="String"><%= format("%.2f", @item['item']['price']) %></Data></Cell>
+			<Cell><Data ss:Type="String"><%= format("%.2f", @item['item']['price'].to_f * @item['quantity_in_cart'].to_f) %></Data></Cell>
+		</Row>
+	<% end %>
+
+	<Row>
+	</Row>
+	<Row>
+		<Cell><Data ss:Type="String">Venue Representative</Data></Cell>
+	</Row>
+	<Row>
+		<Cell><Data ss:Type="String">Name</Data></Cell>
+	</Row>
+	<Row>
+		<Cell><Data ss:Type="String">Sign</Data></Cell>
+	</Row>
+	<Row>
+	</Row>
+	<Row>
+		<Cell><Data ss:Type="String">Artist Representative</Data></Cell>
+	</Row>
+	<Row>
+		<Cell><Data ss:Type="String">Name</Data></Cell>
+	</Row>
+	<Row>
+		<Cell><Data ss:Type="String">Sign</Data></Cell>
+	</Row>
+
+</Table>
+<WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
+<Print xmlns="urn:schemas-microsoft-com:office:excel">
+<ValidPrinterInfo xmlns="urn:schemas-microsoft-com:office:excel" />
+<HorizontalResolution xmlns="urn:schemas-microsoft-com:office:excel">1200</HorizontalResolution>
+<VerticalResolution xmlns="urn:schemas-microsoft-com:office:excel">1200</VerticalResolution>
+</Print>
+<ProtectObjects xmlns="urn:schemas-microsoft-com:office:excel">False</ProtectObjects>
+<ProtectScenarios xmlns="urn:schemas-microsoft-com:office:excel">False</ProtectScenarios>
+</WorksheetOptions>
+</Worksheet>
+</Workbook>

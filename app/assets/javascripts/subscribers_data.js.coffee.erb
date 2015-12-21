@@ -1,0 +1,116 @@
+class SubscribersJS
+  @subscribers_data = null
+  @artist_sales_data = null
+
+  constructor: ->
+    #do nothing just yet
+
+
+# function for showing subscribers data
+
+  showSubsrcibersData: =>
+    api_token = mct
+
+    if @subscribers_data
+      subscribersjs.parseSubscribersPanelDataAndUpdateUI(@subscribers_data)
+
+    if api_token
+      $.ajax
+        type: "GET"
+        url: merchapi.host() + "/users/all?token=#{api_token}&per_page=100&force=true"
+        headers:
+          'Accept': 'application/json'
+        async: true
+        success: (subscribers_data) ->
+          @subscribers_data = subscribers_data
+          subscribersjs.parseSubscribersPanelDataAndUpdateUI(@subscribers_data)
+
+          subscribers = subscribers_data.users
+
+          $("#subscribers").load("/subscribers/info", {"subscribers":subscribers}, (responseText, textStatus, xhr) ->
+            console.log "textStatus: #{textStatus}"
+          )
+
+        error: (data) ->
+          $("#subscribers").text("Error loading subscribers.")
+    else
+      $("#subscribers").text("Error loading subscribers.")
+
+
+# parsing response from API to get subscribers data.
+
+  parseSubscribersPanelDataAndUpdateUI : (subscribers_data) =>
+
+    trial_subscribers_num = subscribers_data.num_trial
+    full_subscribers_num = subscribers_data.num_full
+    $(".trial-subscribers").html(trial_subscribers_num)
+    $(".full-subscribers").html(full_subscribers_num)
+
+
+# calling API to get artist sales value.
+  
+  getArtistSales: =>
+    api_token = mct
+    if @artist_sales
+      parseArtistSalesPanelAndUpdate(@artist_sales)
+    else
+      if api_token
+        $.ajax
+          type: "GET"
+          url: merchapi.host() + "/sales/all?token=#{api_token}&force=true"
+          headers:
+            'Accept': 'application/json'
+          async: true
+          success: (artist_sales) ->
+            @artist_sales = artist_sales
+            subscribersjs.parseArtistSalesPanelAndUpdate(artist_sales)
+          error: (data) ->
+            return
+
+  parseArtistSalesPanelAndUpdate : (artist_sales) =>
+    artist_sales_value = artist_sales['artist_sales']
+    $(".artist-sales").html(artist_sales_value)
+
+  getTotalRevenue: =>
+    total_revenue = $("#total-revenue")
+    total_revenue.text 'Loading...'
+    api_token = mct
+
+    if @subscribers_data
+      subscribersjs.parseSubscribersDataAndUpdateUI(sales)
+    else if api_token
+      $.ajax
+        type: "GET"
+        url: merchapi.host() + "/sales?token=#{api_token}"
+        headers:
+          'Accept': 'application/json'
+        async: true
+        success: (sales) ->
+          @sales_data = sales
+          subscribersjs.parseSubscribersDataAndUpdateUI(sales)
+        error: (data) ->
+          total_revenue.text 'Error Loading Total Income'
+    else
+      total_revenue.text 'Error Loading Total Income'
+
+  parseSubscribersDataAndUpdateUI: (sales) =>
+    total_revenue = $("#total-revenue") 
+    total_usd_sold = 0.00
+    for sale in sales
+      total_usd_sold += +sale.amount 
+    total_revenue.text "$#{subscribersjs.round(total_usd_sold, 2)}"
+
+  round: (number, precision) =>
+    precision = Math.abs(parseInt(precision)) || 0
+    multiplier = Math.pow(10, precision)
+    Math.round(number * multiplier) / multiplier
+
+  stopEvent: (e) ->
+    alert("Stoped")
+    e.preventDefault()
+    e.stopPropagation()
+
+@subscribersjs = new SubscribersJS("")
+@subscribersjs.showSubsrcibersData()
+@subscribersjs.getArtistSales()
+@subscribersjs.getTotalRevenue()

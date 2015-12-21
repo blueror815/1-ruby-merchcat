@@ -1,0 +1,86 @@
+<%= render 'home/header' %>
+
+<div id="hero" class="promo-code">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-7">
+        <%= image_tag 'ipad2.png', class: 'img-responsive aligncenter ipad hidden-sm hidden-xs' %>
+      </div>
+      <div class="col-md-5 right promo-code-form">
+        <h2>Start Your Free Trial</h2>
+        <p>Merch Cat lets you take every opportunity to turn stagefront into storefront, making it easy to handle the business end of being on tour.</p>
+        <p>Enter your promo code for a special offer.</p>
+
+        <%= form_tag '' do %>
+          <%= text_field_tag('promo', nil, :maxlength => 6, placeholder: 'ENTER CODE', id: 'promo_code') %><br /><br />
+          <%= submit_tag('Submit', id: 'promo_submit', class: 'btn btn-lg btn-oreo') %>
+        <% end %>
+        <button class="btn btn-lg btn-transparent" id="promo-spinner-button">Submit <i class="fa fa-circle-o-notch fa-spin"></i></button>
+
+        <%= image_tag 'ipad2.png', class: 'aligncenter ipad visible-sm visible-xs' %>
+      </div>
+    </div>
+  </div>
+  <!-- /.container -->
+</div>
+<!--/Hero -->
+
+
+<div id="video">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-7 placeholder">
+        <!-- <img src="assets/img/video-placeholder-2.png" class="img-responsive aligncenter"/> -->
+        <!-- 16:9 aspect ratio -->
+        <div class="embed-responsive embed-responsive-16by9">
+        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/ifOG_9dQiQg?rel=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
+        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/ifOG_9dQiQg?rel=0" frameborder="0" allowfullscreen></iframe>
+        </div>
+      </div>
+      <div class="col-md-5 merch-better">
+        <%= image_tag 'merch-kitty-logo.png' %>
+
+        <!-- <h2>MERCH CAT</h2> -->
+
+        <h3>Merch Better with Merch Cat</h3>
+
+        <p>Managing your merch shouldn’t feel like managing a business. Spend more time on your music and less
+          on spreadsheets with Merch Cat.</p>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<div class="marketing-row lets-do-this">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 promo">
+        <%= image_tag 'phone-icon.png' %>
+        <h4>Mobile Inventory Management</h4>
+
+        <p>So easy your backup drummer can do it! Just upload your inventory, set your item prices and immediately connect fans to your latest merch all before soundcheck.</p>
+      </div>
+      <div class="col-md-4 promo">
+        <%= image_tag 'ipad-icon.png' %>
+        <h4>Sell Merch Anywhere</h4>
+
+        <p>Playing for a packed room or just a few diehard fans may fuel your soul, but you need to sell a few t-shirts to fuel the van. Merch Cat is your all-in-one solution.</p>
+      </div>
+      <div class="col-md-4 promo">
+        <%= image_tag 'laptop-icon.png' %>
+        <h4>Real-Time Sales Reporting</h4>
+
+        <p>Managing your band is a lot like running a small business, but who says it has to be boring? Instantly view all of your sales and inventory at a glance with Merch Cat.</p>
+      </div>
+    </div>
+    <div class="row text-center">
+      <%= image_tag 'ipad-mini.png', class: 'main' %>
+    </div>
+
+  </div>
+</div>
+
+
+<%= render 'home/footer' %>

@@ -1,0 +1,120 @@
+class ShowsJS
+
+  @sales_data = null
+  @user = null
+
+  constructor: ->
+    #do nothing just yet
+
+
+  getTotalRevenue: =>
+    total_revenue = $("#total-revenue")
+    total_revenue.text 'Loading...'
+    api_token = mct
+
+    if @sales_data
+      showsjs.parseShowsSalesDataAndUpdateUI(sales)
+    else if api_token
+      $.ajax
+        type: "GET"
+        url: merchapi.host() + "/sales?token=#{api_token}&per_page=100"
+        headers:
+          'Accept': 'application/json'
+        async: true
+        success: (sales) ->
+          @sales_data = sales
+          showsjs.parseShowsSalesDataAndUpdateUI(sales)
+        error: (data) ->
+          total_revenue.text 'Error Loading Total Income'
+    else
+      total_revenue.text 'Error Loading Total Income'
+
+  parseShowsSalesDataAndUpdateUI: (sales) =>
+    total_revenue = $("#total-revenue") 
+    total_usd_sold = 0.00
+    for sale in sales
+      total_usd_sold += +sale.amount 
+    total_revenue.text "$#{showsjs.round(total_usd_sold, 2)}"
+
+  round: (number, precision) =>
+    precision = Math.abs(parseInt(precision)) || 0
+    multiplier = Math.pow(10, precision)
+    Math.round(number * multiplier) / multiplier
+
+  getShowsData: =>
+    api_token = mct
+    if api_token
+      $.ajax
+        type: "GET"
+        url: merchapi.host() + "/shows?token=#{api_token}"
+        headers:
+          'Accept': 'application/json'
+        async: true
+        success: (shows) ->
+          $("#shows").load("/shows/info", {"shows":shows}, (responseText, textStatus, xhr) ->
+            console.log "textStatus: #{textStatus}"
+          )
+
+        error: (data) ->
+          $("#shows").text("Error loading shows.")
+    else
+      $("#shows").text("Error loading shows.")
+
+  getShowData: =>
+    api_token = mct
+    show_id = id
+    if api_token and show_id
+      $.ajax
+        type: "GET"
+        url: merchapi.host() + "/sales?show_id=#{show_id}&token=#{api_token}"
+        headers:
+          'Accept': 'application/json'
+        async: true
+        success: (sales) ->
+          $("#show_report").load("/shows/report", {"sales":sales}, (responseText, textStatus, xhr) ->
+            console.log "textStatus: #{textStatus}"
+            showsjs.bindSubmitEmailSettlementForm()
+          )
+
+        error: (data) ->
+          $("#shows").text("Error loading show data.")
+
+  bindSubmitEmailSettlementForm: =>
+    api_token = mct
+    show_id = $('#report_show_id').val()
+    submitBtn = $("#email-report-submit")
+     
+    submitBtn.click (e) =>
+      console.log("submit button clicked!")
+      showsjs.stopEvent(e)
+      email = $('#report_email').val()
+      if email and api_token and show_id
+        $.ajax
+          type: "GET"
+          url: merchapi.host() + "/sales?show_id=#{show_id}&token=#{api_token}"
+          headers:
+            'Accept': 'application/json'
+          async: true
+          success: (sales) ->
+            $.ajax
+              type: "POST"
+              url: "/shows/#{show_id}/email"
+              dataType: 'json'
+              async: true
+              data:
+                "sales": sales, "email": email
+              success: (data) ->
+                console.log "successfully send settlement email"
+                $("#emailReportModal").modal('hide')
+              error: (data) ->
+                console.log "failed to send settlement email - 2"
+          error: (data) ->
+            console.log "failed to send settlement email - 1"
+
+
+  stopEvent: (e) ->
+    e.preventDefault()
+    e.stopPropagation()
+
+@showsjs = new ShowsJS("")
+@showsjs.getTotalRevenue()

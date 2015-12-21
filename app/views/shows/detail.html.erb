@@ -1,0 +1,43 @@
+
+<div id="show_report">Loading report...</div>
+
+<% if params['export'] %>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <%= javascript_include_tag 'api' %>
+    <%= javascript_include_tag 'shows_data' %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
+<% end %>
+
+<%= javascript_tag do %>
+    window.mct = '<%= @api_token %>'
+    window.id = '<%= @show_id %>'
+
+    window.onload = function () {
+        this.showsjs.getShowData()
+    }
+<% end %>
+
+<div class="modal fade" id="emailReportModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog modal-email-report" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h3 class="modal-title">Email Settlement Report</h3>
+      </div>
+      <div class="modal-body">
+        <div class="email-report">
+          <%= form_tag '' do %>
+            <%= email_field_tag(:email, nil, placeholder: 'Email', id: 'report_email') %><br /><br />
+            <%= submit_tag('Submit', id: 'email-report-submit', class: 'btn btn-lg btn-transparent') %>
+            <%= hidden_field_tag 'report_show_id', @show_id %>
+          <% end %>
+
+          <div id="modal_signup_auth_form_message_container" class="message_container">
+            <span id="modal_signup_auth_form_message_spinner"></span>
+            <span id="modal_signup_auth_form_message"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

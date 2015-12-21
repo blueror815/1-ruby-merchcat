@@ -1,0 +1,354 @@
+    <% if @promos && @promos.length  %>
+        <div class="row">
+            <div class="col-lg-12 show-table">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-content">
+                        <div class="ibox-title">
+                            <h5>Promo Codes</h5>
+                        </div>
+                        <div id="code-btn-div" class="ibox-title">
+                            <button type="button" id="create-promo-code" class="btn btn-primary" data-toggle="modal" data-target="#createPromoCodeModal">
+                                Create Code
+                            </button>
+                        </div>
+                        <div class="modal inmodal fade" id="createPromoCodeModal" tabindex="-1" role="dialog" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                        <h4 class="modal-title">Create Promo Code</h4>
+                                        <!-- <small class="font-bold">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</small> -->
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="form-group">
+                                            <label>Code</label>
+                                            <input type="text" id="promo-code" placeholder="Enter Promo Code here" class="form-control" size="6" maxlength="6" required minlength="6">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Description</label>
+                                            <input type="text" style="text-align: left" id="description" placeholder="Enter Description here" class="form-control" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label >Duration</label>
+                                            <input type="text" style="text-align: left" id="duration" class="form-control" placeholder="Enter Duration here">
+                                        </div>
+                                        <div class="form-group" id="data_1">
+                                            <label class="font-noraml">Expiration</label>
+                                            <div class="input-group date">
+                                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input style="text-align: left" type="text" id="date" class="form-control" value="03/04/2015" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
+                                        <button type="button" id="create-promo-btn" class="btn btn-primary">Create</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="modal inmodal fade" id="editPromoCodeModal" tabindex="-1" role="dialog" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content animated bounceInRight">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                        <h4 class="modal-title">Update Promo Code</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="form-group">
+                                            <label>Code</label>
+                                            <input type="text" id="promo-code-edit" placeholder="Enter Promo Code here" class="form-control" size="6" maxlength="6" required minlength="6">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Description</label>
+                                            <input type="text" style="text-align: left" id="description-edit" placeholder="Enter Description here" class="form-control" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label >Duration</label>
+                                            <input type="text" style="text-align: left" id="duration-edit" class="form-control" placeholder="Enter Duration here">
+                                        </div>
+                                        <div class="form-group" id="data_1">
+                                            <label class="font-noraml">Expiration</label>
+                                            <div class="input-group date">
+                                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input style="text-align: left" type="text" id="date-edit" class="form-control" value="03/11/2015" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-white" id="delete-promo-btn" >Delete</button>
+                                        <button type="button" id="update-promo-btn" class="btn btn-primary">Update</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <table id="promocode-table" class="subscriber-table footable table table-stripped" data-page-size="20" data-filter=#filter>
+                            <thead style="width:100%">
+                                <tr>
+                                    <th >Code</th>
+                                    <th >Description</th>
+                                    <th >Duration</th>
+                                    <th >Expiration</th>
+                                    <!--th >Redeemed</th>
+                                    <th >Subscribed</th-->
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% (1..@promos.length).each do |i| %>
+
+                                    <%  @promo = @promos[i-1] %>
+                                    
+                                    <tr id="<%= @promo["id"] %>">
+                                        <td class="center">
+                                            <a class="promocode" data-toggle="modal" data-target="#editPromoCodeModal" > <%= @promo['code'] %></a>    
+                                        </td>
+                                        <td class="center">
+                                                <%= @promo['description']  %>
+                                        </td>
+                                        <td class="center">
+                                                <%= 
+                                                    if @promo['duration']
+                                                        @promo['duration']
+                                                    end 
+                                                %>
+                                        </td>
+                                        <td class="center">
+                                                <%= 
+                                                    if @promo['expiration'] 
+                                                        Time.parse(@promo['expiration']).strftime("%m/%d/%y")
+                                                    end
+                                                %>
+                                        </td>
+
+                                        <!--td class="center">
+                                            <%= @promo['code'] %>    
+                                        </td>
+
+                                        <td class="center">
+                                            <%= @promo['code'] %>    
+                                        </td-->
+
+                                    </tr>
+                                <% end %>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="7">
+                                        <ul class="pagination pull-right"></ul>
+                                    </td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <% end %>
+<script type="text/javascript">
+    $(function() {
+
+        $('.footable').footable();
+        var newDate = $('.product-imitation').val();
+        console.log(newDate);
+
+        $('#data_1 .input-group.date').datepicker({
+            todayBtn: "linked",
+            keyboardNavigation: false,
+            forceParse: false,
+            calendarWeeks: true,
+            autoclose: true
+        });
+
+        var today = new Date();
+        var dd = today.getDate() + 14;
+        var mm = today.getMonth()+1; //January is 0!
+        var yyyy = today.getFullYear();
+
+        if(dd > 31) {
+            dd = dd - 31;
+            mm = mm + 1;
+        }
+
+        if(mm > 12) {
+            yyyy = yyyy + 1;
+        }
+
+        if(dd<10){
+            dd='0'+dd;
+        } 
+        if(mm<10){
+            mm='0'+mm;
+        } 
+        var today = mm+'/'+dd+'/'+yyyy;
+        
+        $("#date").val(today);
+
+        $("#duration").keydown(function (e) {
+        // Allow: backspace, delete, tab, escape, enter and .
+            if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110, 190]) !== -1 ||
+                 // Allow: Ctrl+A
+                (e.keyCode == 65 && e.ctrlKey === true) ||
+                 // Allow: Ctrl+C
+                (e.keyCode == 67 && e.ctrlKey === true) ||
+                 // Allow: Ctrl+X
+                (e.keyCode == 88 && e.ctrlKey === true) ||
+                 // Allow: home, end, left, right
+                (e.keyCode >= 35 && e.keyCode <= 39)) {
+                     // let it happen, don't do anything
+                     return;
+            }
+            // Ensure that it is a number and stop the keypress
+            if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
+                e.preventDefault();
+            }
+        });
+
+        $("#create-promo-btn").click(function(){
+            api_token = mct;
+            var promo_code = $("#promo-code").val();
+            var description = $("#description").val();
+            var duration = $("#duration").val();
+            var date_temp = $("#date").val();
+            var date = new Date(date_temp);
+
+            if(promo_code && promo_code.length == 6 && description && date) {
+
+                $.ajax({
+                    method: "POST",
+                    url: merchapi.host() + "/pcodes?token=" + api_token,
+                    data: {code: promo_code, duration: duration, expiration: date, description: description},
+                    success: function(data) {
+                        console.log(data);
+                        if(data["code"]) {
+                            swal({
+                                title: "Status",
+                                text: "Promo Code created successfully!",
+                                type: "success"
+                            });
+
+                            $("#createPromoCodeModal").modal('hide');
+                            $("#promocode-table tr:last").before('<tr id="' + data["id"] + '"><td class="center" ><a class="promocode" data-toggle="modal" data-target="#editPromoCodeModal" >' + data["code"] + '</a></td><td class="center">' + data["description"] +'</td><td class="center">' + data["duration"] +'</td><td class="center">' + date_temp +'</td></tr>');
+                           location.reload(); 
+                        }
+                    },
+                    error: function(err, req) {
+                        swal({
+                            title: "Error",
+                            text: "Promo Code creation failed."
+                        });
+                    }
+
+                });
+            } else {
+                swal({
+                    title: "Warning",
+                    text: "Please enter the fields correctly!",
+                    type: "success"
+                });
+            }
+        });
+            
+        var id = 0;
+        var tr;
+        var tds;
+        var a_tag;
+        $("a.promocode").click(function(){
+            a_tag = $(this);
+            var code = $.trim($(this).text());
+
+            tr = $(this).parent().parent();
+            id = tr.attr("id");
+            tds = tr.children();
+            
+            console.log(tds.eq(1).text().length);
+
+            var description = $.trim(tds.eq(1).text());
+            var duration = $.trim(tds.eq(2).text());
+            var expiration = $.trim(tds.eq(3).text());
+
+            $("#promo-code-edit").val(code);
+            $("#description-edit").val(description);
+            $("#duration-edit").val(duration);
+            $("#date-edit").val(expiration);
+                      
+        })
+
+        $("#update-promo-btn").click(function(){
+            api_token = mct;
+            var promo_code = $("#promo-code-edit").val();
+            var description = $("#description-edit").val();
+            var duration = $("#duration-edit").val();
+            var date_temp = $("#date-edit").val();
+            var date = new Date(date_temp);
+
+            if(promo_code && promo_code.length == 6 && description && date) {
+
+                $.ajax({
+                    method: "PUT",
+                    url: merchapi.host() + "/pcodes/" + id +"?token=" + api_token,
+                    data: {code: promo_code, duration: duration, expiration: date, description: description},
+                    success: function(data) {
+                        if(data["code"]) {
+                            swal({
+                                title: "Status",
+                                text: "Promo Code updated successfully!",
+                                type: "success"
+                            });
+                            $("#editPromoCodeModal").modal('hide');
+
+                            a_tag.text(promo_code);
+                            tds.eq(1).text(description);
+                            tds.eq(2).text(duration);
+                            tds.eq(3).text(date_temp);
+                        }
+                    },
+                    error: function(err, req) {
+                        swal({
+                            title: "Warning",
+                            text: "Can not update promo code!",
+                            type: "success"
+                        });
+                    }
+
+                });
+            } else {
+                swal({
+                    title: "Warning",
+                    text: "Please enter the fields correctly!",
+                    type: "success"
+                });
+            }
+        });
+        
+        $("#delete-promo-btn").click(function(){
+            api_token = mct;
+         
+            $.ajax({
+                method: "DELETE",
+                url: merchapi.host() + "/pcodes/" + id +"?token=" + api_token,
+               
+                success: function(data) {
+                    console.log(data);
+                    swal({
+                        title: "Status",
+                        text: "Promo Code Deleted successfully!",
+                        type: "success"
+                    });
+                    $("#editPromoCodeModal").modal('hide');
+                    tr.remove();
+                },
+                error: function(err, req) {
+                    swal({
+                        title: "Warning",
+                        text: "Can not update promo code!",
+                        type: "success"
+                    });
+                }
+
+            });
+         
+        });
+
+    });
+        
+</script>

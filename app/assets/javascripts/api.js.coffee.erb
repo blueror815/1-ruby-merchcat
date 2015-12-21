@@ -1,0 +1,15 @@
+class Api
+
+  @version = null
+
+  constructor: (version) ->
+    @version = version
+    console.log "Setting up API for ENV: <%= ENV['RAILS_ENV'] %>"
+
+  host: (env) =>
+    switch "<%= ENV['RAILS_ENV'] %>"
+      when 'development' then "https://merchcat-api-staging.herokuapp.com/api/#{@version}"
+      # when 'development' then "http://localhost:3009/api/#{@version}"
+      else "https://merchcat-api.herokuapp.com/api/#{@version}"
+
+@merchapi = new Api('v1')

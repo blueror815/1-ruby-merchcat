@@ -1,0 +1,27 @@
+<div class="wrapper wrapper-content" style="padding: 25px;">
+  <div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+      <h2>Shows</h2>
+      <ol class="breadcrumb">
+        <li>
+          <%= link_to 'Home', dashboards_dashboard_2_path %>
+        </li>
+        <li class="active">
+          <strong>Shows</strong>
+        </li>
+      </ol>
+    </div>
+    <div class="col-lg-2">
+
+    </div>
+  </div>
+
+  <div id="shows">Loading Shows...</div>
+</div>
+<%= javascript_tag do %>
+    window.mct = '<%= @api_token %>'
+
+    window.onload = function () {
+        this.showsjs.getShowsData()
+    }
+<% end %>

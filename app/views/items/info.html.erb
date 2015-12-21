@@ -1,0 +1,36 @@
+<% if @items && @items.length > 0 %>
+
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th colspan="2">Item Name</th>
+        <th>Price</th>
+        <th style="text-align: center;">Total Quantity</th>
+      </tr>
+      </thead>
+      <tbody>
+
+      <% (0..(@items.length - 1)).each do |i| %>
+        <tr>
+          <% @item = @items["#{i}"] %>
+
+          <td colspan="2"><%= @item['nickname'] || 'Un-named' %></td>
+          <td><strong>$<%= @item['price'] || 0.00 %></strong></td>
+          <td align="middle"><%= @item['quantity_on_hand'] || 0 %></td>
+        </tr>
+      <% end %>
+
+      </tbody>
+    </table>
+    <!--<ul class="pagination pull-right">-->
+      <!--<li class="footable-page-arrow disabled"><a data-page="first" href="#first">«</a></li>-->
+      <!--<li class="footable-page-arrow disabled"><a data-page="prev" href="#prev">‹</a></li>-->
+      <!--<li class="footable-page active"><a data-page="0" href="#">1</a></li>-->
+      <!--<li class="footable-page"><a data-page="1" href="#">2</a></li>-->
+      <!--<li class="footable-page-arrow"><a data-page="next" href="#next">›</a></li>-->
+      <!--<li class="footable-page-arrow"><a data-page="last" href="#last">»</a></li>-->
+    <!--</ul>-->
+
+<% else %>
+    No items available. Start by adding items in the Merch Cat mobile app.
+<% end %>

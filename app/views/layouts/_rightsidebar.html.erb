@@ -1,0 +1,584 @@
+<div id="right-sidebar" style="max-width: 150px; height: 96px;">
+    <ul class="nav metismenu ">
+        <li>
+            <a class="side-bar-btn"  data-toggle="modal" href="#profile-modal-form">Profile</a>
+            <%= link_to signout_path, :class => 'side-bar-btn', :method => :delete, data: { confirm: 'Are you sure you want to logout?' } do %>
+                Log out
+            <% end %>
+        </li>
+    </ul>
+</div>
+<div class="ibox-content">
+    <div id="profile-modal-form" class="profile-modal modal fade" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <button type="button" style="margin: 10px" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <div class="modal-header" style="text-align: center; border-bottom: 0px">
+                    <h3>User Profile</h3>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-6 b-r profile-modal-left-col">
+                            <h3 style="text-align: center" class="m-t-none m-b">Profile</h3>
+                            <form role="form" id="profile-form">
+                                <div class="form-group">
+                                    <label>Artist Name</label> 
+                                    <input type="text" placeholder="Artist Name" class="form-control" id="profile-artist-name">
+                                </div>
+                                <div class="form-group">
+                                    <label>First Name</label> 
+                                    <input type="text" placeholder="First Name" class="form-control" id="profile-first-name">
+                                </div>
+                                <div class="form-group">
+                                    <label>Last Name</label> 
+                                    <input type="text" placeholder="Last Name" class="form-control" id="profile-last-name">
+                                </div>
+                                <div class="form-group">
+                                    <label>Email</label> 
+                                    <input type="email" placeholder="Email" class="form-control" id="profile-email" id="profile-email">
+                                </div>
+                                <div id="profile-email-error-alert" class="alert alert-error" role="alert" style="display: none;">
+                                    <div><span  id="email-error-text"></span></div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Password</label> 
+                                    <input type="password" placeholder="Password" class="form-control" id="profile-password" name="profile-password">
+                                </div>
+                                <div class="form-group">
+                                    <label>Password Confirmation</label> 
+                                    <input type="password" placeholder="Password Confirmation" class="form-control" id="profile-confirm-password" name="profile-confirm-password">
+                                </div>
+                                <div id="profile-password-error-alert" class="alert alert-error" role="alert" style="display: none; ">
+                                    <div><span id="password-error-text"></span></div>
+                                </div>
+                                <div style="text-align:center; padding: 25px">
+                                    <button id="profile-update-btn" class="btn btn-sm btn-primary m-t-n-xs" ><strong>Update Profile</strong></button>
+                                    <label> 
+                                </div>
+                            </form>
+                            
+                        </div>
+                        <div class="col-sm-6 profile-modal-right-col">
+                            <h3 style="text-align: center" class="m-t-none m-b">Subscription Status</h3>
+                            <div class="form-group">
+                                <label>Status:</label>
+                                <label id="profile-status"></label>
+                            </div>
+                            <div class="form-group">
+                                <label>Expiration:</label>
+                                <label id="profile-expiration-date"></label>
+                            </div>
+                            
+                            <div class="text-center" style="text-align: center">
+                                <button type="button" class="btn btn-primary upgrade-membership" data-toggle="modal" data-target="#stripeModal" id="upgrade-btn">
+                                    Upgrade Membership
+                                </button>
+                                <br>
+                                <button type="button" class="btn btn-primary cancel-membership"> Cancel Membership</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal inmodal" id="stripeModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog" style="width:300px; height:336px;">
+            <div class="modal-content animated bounceInRight">
+                <div class="modal-header stripe-modal-header">
+                    <button id="stripe-close-btn"  type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <div class="logo">
+                        <img style="background-color: black; margin-left: 10px" src="/assets/logo-element-68b6fd1b099c24dd44f7fad3f99fe148.png">
+                    </div>
+                    <h6 id="strip-modal-title">Monthly Subscription</h6>
+                    <small style="font-size: 12px;" class="font-bold">7.99$/mo</small>
+                </div>
+                <div class="modal-body stripe-modal-body">
+                    <div id="payment-error-alert" class="alert alert-error" role="alert" style="display: none;">
+                        <div><span id="payment-error-text"></span></div>
+                    </div>
+
+                    <div class="stripe-input-row" style="margin-top: 20px">
+                        <div class="cardNumberInput input top input-group">
+                            <span class="stripe-span input-group-addon">
+                                <i class="fa fa-credit-card"></i>
+                            </span>
+                            <input class="stripe-input form-control" type="tel" style="border-radius: 5px;" placeholder="Card number"  id="stripe-card-number" maxlength="16">
+                            <span class="card" id="card-brand" style="opacity: 1; transform: translateX(0px); transition: none 0s ease 0s ;"></span>
+                        </div>
+                    </div>
+
+                    <div class="stripe-input-row-calendar-cvc" >
+                        <div class="col-lg-6" style="padding-left: 0px; padding-right: 0px;">
+                            <span class="stripe-span input-group-addon" style="margin-left: 7px;
+}">
+                                <i class="fa fa-calendar-o"></i>
+                            </span>
+                            <input class="stripe-input form-control" type="text" style="border-bottom-left-radius: 5px; border-top-left-radius: 5px; border-bottom-right-radius: 0px; border-top-right-radius: 0px" data-mask="99/9999" placeholder="MM/YY" id="stripe-expiry-date">
+                        </div>
+                      
+                        <div class="col-lg-6" style="padding-left: 0px; padding-right: 0px">
+                            <span class="stripe-span input-group-addon" style="margin-left: 4px;
+}">
+                                <i class="fa fa-lock" style="font-size: 22px"></i>
+                            </span>
+                            <input class="stripe-input form-control" type="text" style="border-bottom-left-radius: 0px; border-top-left-radius: 0px;" placeholder="CVC" id="stripe-cvc" maxlength="4">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer stripe-modal-footer" style="text-align: center">
+                    <button type="button" id="membership-upgrade-btn"  class="btn btn-primary">Upgrade Membership<i class="fa fa-circle-o-notch fa-spin" style="display:none"></i></button>
+                </div>
+            </div>
+        </div>        
+    </div>
+</div>
+
+
+
+<script type="text/javascript">
+    
+
+    $(function(){
+
+        $(".side-bar-btn").click(function(){
+           $("div#right-sidebar").removeClass("sidebar-open");
+        });
+
+        $(".checkoutView > button").click(function(event) {
+            console.log("submit button clicked!");
+        });
+
+        $("#upgrade-btn").click(function(){
+            $("#profile-modal-form").css("display","none");
+        });
+
+        $("#stripe-close-btn").click(function(){
+            $("#profile-modal-form").css("display","block");
+        });
+
+        $("#stripe-card-number").keyup(function (e) {
+            var first_char = e.target.value.charAt(0);
+            var second_char = e.target.value.charAt(1);
+            if(first_char == 3 && (second_char == 7 || second_char == 4)) {
+                if ($("#card-brand").hasClass("visa")) {
+                    $("#card-brand").removeClass("visa");    
+                }
+                if ($("#card-brand").hasClass("master")) {
+                    $("#card-brand").removeClass("master");    
+                }
+                if ($("#card-brand").hasClass("discover")) {
+                    $("#card-brand").removeClass("discover");    
+                }
+                $("#stripe-card-number").attr("maxlength","15");
+                $("#card-brand").addClass("amex");
+            } 
+            else if (first_char == 4){
+                if ($("#card-brand").hasClass("amex")) {
+                    $("#card-brand").removeClass("amex");    
+                }
+                if ($("#card-brand").hasClass("master")) {
+                    $("#card-brand").removeClass("master");    
+                }
+                if ($("#card-brand").hasClass("discover")) {
+                    $("#card-brand").removeClass("discover");    
+                }
+                $("#stripe-card-number").attr("maxlength","16");
+                $("#card-brand").addClass("visa");   
+            }
+            else if (first_char == 5 && (second_char > 0 && second_char < 6 )) {
+                if ($("#card-brand").hasClass("visa")) {
+                    $("#card-brand").removeClass("visa");    
+                }
+                if ($("#card-brand").hasClass("amex")) {
+                    $("#card-brand").removeClass("amex");    
+                }
+                if ($("#card-brand").hasClass("discover")) {
+                    $("#card-brand").removeClass("discover");    
+                }
+                $("#stripe-card-number").attr("maxlength","16");
+                $("#card-brand").addClass("mastercard");
+            }
+            else if (first_char == 6 && (second_char == 0 || second_char0 == 4 || second_char == 5 ))
+            {
+                if ($("#card-brand").hasClass("visa")) {
+                    $("#card-brand").removeClass("visa");    
+                }
+                if ($("#card-brand").hasClass("master")) {
+                    $("#card-brand").removeClass("master");    
+                }
+                if ($("#card-brand").hasClass("amex")) {
+                    $("#card-brand").removeClass("amex");    
+                }
+                $("#stripe-card-number").attr("maxlength","16");
+                $("#card-brand").addClass("discover");   
+            }
+        });
+        
+        $("button.cancel-membership").click(function() {
+            swal({
+                title: "Are you sure?",
+                text: "Your membership will be cancelled.",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#4dd888",
+                confirmButtonText: "Yes",
+                closeOnConfirm: false
+            }, 
+            function() {
+                var stripe_customer_id = "";
+                var stripe_email = "";
+                var trial_ended;
+                var user_id;
+                var update;
+
+                api_token = mct;
+                $.ajax({
+                    method: "GET",
+                    url: merchapi.host() + "/users/me?token=" + api_token,
+                    async: true,
+                    success: function(response) {
+                        console.log("success from api for a user", response);
+                        user_id = response.id;
+                        // stripe_customer_id = response.stripe_customer_id;
+                        // stripe_email = response.email;
+                        // user_id = response.id;
+                        trial_began = new Date();
+                        
+                        $.ajax({
+                            method: "PUT",
+                            url: merchapi.host() + "/users/cancel/" + user_id + "?token=" + api_token,
+                            data: {trial_began: trial_began},
+                            async: false,
+                            success: function(response_for_cancel_message) {
+                                console.log("Cancel subscriptions message", response_for_cancel_message);
+                                $("#profile-status").text("Expired");
+                                 swal({
+                                    title: "Status",
+                                    text: "Membership cancelled successfully!",
+                                    type: "success"
+                                });
+                                $("button.cancel-membership").css("display", "none");
+                                $("button.upgrade-membership").css("display", "block");
+                                update = true;
+                            },
+                            error: function(response_for_cancel_error) {
+                                console.log("Cancel subscriptions error message", response_for_cancel_error);
+                                swal({
+                                    title: "Fail!",
+                                    text: "Membership cancelled fail!"
+                                });
+                            } 
+                        });
+                        if (update) {
+                            $.ajax({
+                                method: "GET",
+                                url:merchapi.host() + "/subscriptions?token=" + api_token,
+                                data: {user_id: user_id},
+                                async: true,
+                                success: function(resp_for_susbscription) {
+                                    console.log("Get the latest Subscription", resp_for_susbscription);
+                                    subscription_id = resp_for_susbscription.id;
+                                    cancelled_at = new Date();
+                                    $.ajax({
+                                        method: "PUT",
+                                        url:merchapi.host() + "/subscriptions/" + subscription_id + "?token=" + api_token,
+                                        data: {cancelled_at, cancelled_at},
+                                        async: false,
+                                        success: function(subscription) {
+                                            console.log("subscription", subscription);
+                                        },
+                                        error: function(error) {
+                                            console.log("error for subscription", error);
+                                        } 
+                                    });
+                                },
+                                error: function(resp_for_susbscription_error) {
+                                    console.log("resp_for_susbscription_error", resp_for_susbscription_error);
+                                }
+                            });
+                        }
+                    },
+                    error: function(response) {
+
+                    }
+                });
+            })
+        });
+
+        $("#membership-upgrade-btn").click(function(){
+            // $(this).prop("disabled", true);
+            $("#stripeModal").modal({
+                backdrop: 'static',
+                keyboard: false
+            });
+            
+            $("#profile-modal-form").modal({
+                backdrop: 'static',
+                keyboard: false
+            });
+
+            $("#membership-upgrade-btn").prop("disabled", true);
+
+            $("#membership-upgrade-btn > i").css("display","block");
+
+            var email = $("#stripe-email").val();
+            var card_number = $("#stripe-card-number").val();
+            var expiry_date = $("#stripe-expiry-date").val();
+            var expiry_date_month = expiry_date.split("/")[0];
+            var expiry_date_year = expiry_date.split("/")[1];
+            var cvc = $("#stripe-cvc").val();
+
+            Stripe.card.createToken({
+                number: card_number,
+                cvc: cvc,
+                exp_month: expiry_date_month,
+                exp_year: expiry_date_year
+            }, stripeResponseHandler);
+        });
+    })
+    
+    function stripeResponseHandler(status, response) {
+        // alert(status);
+        var stripe_token = "";
+        if(response.error) {
+            console.log(response.error.message);
+            $("#membership-upgrade-btn > i").css("display","none");
+            $("#payment-error-text").text(response.error.message);
+            $("#payment-error-alert").removeClass("alert-success").addClass("alert-error");
+            $("#payment-error-alert").slideDown().delay(4000).slideUp();
+            $("#membership-upgrade-btn").prop("disabled", false);            
+
+        } else {
+            
+            stripe_token = response.id;
+            email = $("#stripe-email").val();
+            api_token = mct;
+            $.ajax({
+                method: "GET",
+                url: merchapi.host() + "/users/me?token=" + api_token,
+                async: true,
+                success: function(response) {
+                    console.log("success from api for a user", response);
+                    user_id = response.id;
+                    stripe_email = response.email;
+
+                    if (response.stripe_customer_id == "Not Created") {
+                        $.ajax({
+                            method: "POST",
+                            url: "/membership/upgrade",
+                            data: { email: stripe_email, stripe_token: stripe_token },
+                            success: function(resp) {
+                                console.log(resp);
+                                var response_from_stripe = resp;
+
+                                stripe_customer_id = response_from_stripe.id;
+
+                                stripe_subscription_id = response_from_stripe.subscriptions.data[0].id;
+
+                                stripe_active_until_temp = response_from_stripe.subscriptions.data[0].current_period_end;
+
+                                var stripe_active_until = new Date(parseInt( stripe_active_until_temp) * 1000);
+
+                                var amount = response_from_stripe.subscriptions.data[0].plan.amount / 100;
+
+                                plan_created_date_temp = response_from_stripe.subscriptions.data[0].plan.created;
+
+                                var plan_created_date = new Date(parseInt(plan_created_date_temp) * 1000);
+
+                                var trial_ended = new Date();
+
+                                $.ajax({
+
+                                    method: "PUT",
+                                    url: merchapi.host() + "/users/upgrade/" + user_id + "?token=" + api_token,
+                                    data: {
+                                            stripe_customer_id      :  stripe_customer_id, 
+                                            stripe_subscription_id  :  stripe_subscription_id, 
+                                            stripe_active_until     :  stripe_active_until, 
+                                            email                   :  stripe_email,
+                                            trial_ended             :  trial_ended
+                                    },
+                                    success: function(response_from_api_user) {
+
+                                        $.ajax({
+                                            method: "POST",
+                                            url: merchapi.host() + "/subscriptions" + "?token=" + api_token,
+                                            data: {
+                                                user_id                 :  user_id,
+                                                stripe_customer_id      :  stripe_customer_id,
+                                                stripe_subscription_id  :  stripe_subscription_id, 
+                                                amount                  :  amount,
+                                                date                    :  plan_created_date
+                                            },
+                                            success: function(response_from_api_subscription) {
+                                                console.log(response_from_api_subscription);
+                                                //=============Membership upgraded successfully ===========//
+                                                $("#membership-upgrade-btn > i").css("display","none");
+                                                $("#membership-upgrade-btn").prop("disabled", false);
+                                                swal({
+                                                    title: "Status",
+                                                    text: "Membership upgraded successfully!",
+                                                    type: "success"
+                                                });
+
+                                                $("#profile-status").text("Paid Subscription");
+                                                $("#stripeModal").modal('hide');
+                                                $("button.upgrade-membership").css("display", "none");
+                                                $("button.cancel-membership").css("display", "block");
+                                                $("#profile-modal-form").css("display","block");
+                                            },
+                                            error: function(response_from_api_subscription_error){
+
+                                                console.log("response_from_api_subscription_error", response_from_api_subscription_error);
+
+                                                $("#membership-upgrade-btn > i").css("display","none");
+                                                $("#payment-error-text").text("Can not upgrade membership now. Try agin!");
+                                                $("#payment-error-alert").removeClass("alert-success").addClass("alert-error");
+                                                $("#payment-error-alert").slideDown().delay(4000).slideUp();
+                                                $("#membership-upgrade-btn").prop("disabled", false);
+
+                                            }
+                                        }); 
+
+                                    },
+                                    error: function(response_from_api_error) {
+
+                                        console.log("response_from_api_error", response_from_api_error);
+                                        $("#membership-upgrade-btn > i").css("display","none");
+                                        $("#payment-error-text").text("Can not upgrade membership now. Try agin!");
+                                        $("#payment-error-alert").removeClass("alert-success").addClass("alert-error");
+                                        $("#payment-error-alert").slideDown().delay(4000).slideUp();
+                                        $("#membership-upgrade-btn").prop("disabled", false);
+                                        
+                                    }
+
+                                });
+
+                            },
+                            error: function (resp) {
+                                $("#membership-upgrade-btn > i").css("display","none");
+                                $("#payment-error-text").text("Request Timeout Error!");
+                                $("#payment-error-alert").removeClass("alert-success").addClass("alert-error");
+                                $("#payment-error-alert").slideDown().delay(4000).slideUp();
+                                $("#membership-upgrade-btn").prop("disabled", false);
+                            }
+                        });
+                    
+                    } else {
+
+                        stripe_customer_id = response.stripe_customer_id;
+
+                        $.ajax({
+                            method: "POST",
+                            url: "/membership/retrieve",
+                            data: { stripe_customer_id: stripe_customer_id },
+                            async: true,
+                            success: function(response) {
+                                console.log("response from stripe server for retrieve", response);
+                                
+                                amount = response.subscriptions.data[0].plan.amount / 100;
+
+                                stripe_subscription_id = response.subscriptions.data[0].id;
+
+                                stripe_active_until_temp = response.subscriptions.data[0].current_period_end;
+
+                                stripe_active_until = new Date(parseInt( stripe_active_until_temp) * 1000);
+
+                                date_temp = response.subscriptions.data[0].plan.created;
+
+                                date = new Date(parseInt(date_temp) * 1000);
+
+                                var trial_ended = new Date();
+
+                                var update;
+
+                                $.ajax({
+                                    method: "POST",
+                                    url: merchapi.host() + "/subscriptions?token=" + api_token,
+                                    async: false,
+                                    data: {
+                                        user_id                 : user_id,
+                                        stripe_customer_id      : stripe_customer_id,
+                                        amount                  : amount, 
+                                        stripe_subscription_id  : stripe_subscription_id,
+                                        date                    : date
+                                    },
+                                    success: function(response) {
+                                        console.log("update subscriptions message", response);
+
+                                        update = true;
+                                        
+                                    },
+                                    error: function(response) {
+                                        console.log("update subscriptions error message", response);
+                                        $("#membership-upgrade-btn > i").css("display","none");
+                                        ("#payment-error-text").text("Can not update subscriptions. Please try again!");
+                                        $("#payment-error-alert").removeClass("alert-success").addClass("alert-error");
+                                        $("#payment-error-alert").slideDown().delay(4000).slideUp();
+                                        $("#membership-upgrade-btn").prop("disabled", false);
+                                    }
+                                });
+                                if (update) {
+                                    $.ajax({
+                                        method: "PUT",
+                                        url: merchapi.host() + "/users/upgrade/" + user_id + "?token=" + api_token,
+                                        async: false,
+                                        data: {
+                                                stripe_customer_id      :  stripe_customer_id, 
+                                                stripe_subscription_id  :  stripe_subscription_id, 
+                                                stripe_active_until     :  stripe_active_until, 
+                                                email                   :  stripe_email,
+                                                trial_ended             :  trial_ended
+                                        },
+                                        success: function(response_from_api_user) { 
+                                            $("#membership-upgrade-btn > i").css("display","none");
+                                            $("#membership-upgrade-btn").prop("disabled", false);
+                                            swal({
+                                                title: "Status",
+                                                text: "Membership upgraded successfully!",
+                                                type: "success"
+                                            });
+                                            $("#profile-status").text("Paid Subscription");
+                                            $("#stripeModal").modal('hide');
+                                            $("button.upgrade-membership").css("display", "none");
+                                            $("button.cancel-membership").css("display", "block");
+                                            $("#profile-modal-form").css("display","block");
+                                        },
+                                        error: function(response_from_api_error) {
+                                            console.log("update subscriptions error message", response);
+                                            $("#membership-upgrade-btn > i").css("display","none");
+                                            ("#payment-error-text").text("Can not update subscriptions. Please try again!");
+                                            $("#payment-error-alert").removeClass("alert-success").addClass("alert-error");
+                                            $("#payment-error-alert").slideDown().delay(4000).slideUp();
+                                            $("#membership-upgrade-btn").prop("disabled", false);
+                                        }
+                                    });    
+                                }                                
+                            },
+                            error: function(response) {
+                                console.log("error message from stripe server for retrieve", response);
+                                $("#membership-upgrade-btn > i").css("display","none");
+                                ("#payment-error-text").text("Request Timeout Error!");
+                                $("#payment-error-alert").removeClass("alert-success").addClass("alert-error");
+                                $("#payment-error-alert").slideDown().delay(4000).slideUp();
+                                $("#membership-upgrade-btn").prop("disabled", false);
+                            }
+                        });
+
+                    }
+                },
+                error: function(response) {
+
+                    console.log("error message from api for a user", response);
+
+                    $("#membership-upgrade-btn > i").css("display","none");
+                    $("#payment-error-text").text("Request Timeout Error!");
+                    $("#payment-error-alert").removeClass("alert-success").addClass("alert-error");
+                    $("#payment-error-alert").slideDown().delay(4000).slideUp();
+                    $("#membership-upgrade-btn").prop("disabled", false);                    
+                }
+            });
+        }
+    }
+</script>

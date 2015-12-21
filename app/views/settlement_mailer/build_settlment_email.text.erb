@@ -1,0 +1,46 @@
+Show Settlement Report
+
+Date
+<%= Time.parse(@show['date']).strftime("%m/%d/%y") %>
+Venue
+<%= @show['venue']['name'] %>
+City
+<%= @show['venue']['city'] %>
+State
+<%= @show['venue']['state'] %><
+Total Attendance
+Venue Capacity
+
+<% (1..@items.length).each do |i| %>
+<% @item = @items[i-1] %>
+<%= @item['item']['id'] %>
+<%= @item['quantity_in_cart'] %>
+<%= @item['item']['nickname'] %>
+<%= @item['item']['sku'] %>
+<%= format("$%.2f", @item['item']['price']) %>
+<%= format("$%.2f", @item['item']['price'].to_f * @item['quantity_in_cart'].to_f) %>
+<% end %>
+
+Gross Sales
+<%= @show['sales_amount'] ? format("$%.2f", @show['sales_amount']) : 0 %>
+
+Venue Cut %
+<%= @show['venue_cut'] %>%
+
+Venue Cut Amount
+<%= format("$%.2f", @show['sales_amount'].to_f * (@show['venue_cut'].to_i * 0.01)) %>
+
+ Net Sales
+<%= format("$%.2f", @show['sales_amount'].to_f - @show['sales_amount'].to_f * (@show['venue_cut'].to_i * 0.01)) %>
+
+Venue Representative:
+Name:
+
+Sign:
+
+Artist Representative:
+Name:
+
+Sign:
+
+

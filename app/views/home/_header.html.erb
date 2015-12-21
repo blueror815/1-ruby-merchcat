@@ -1,0 +1,34 @@
+<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <%= link_to root_path, class: 'navbar-brand' do %>
+          <%= image_tag 'headerlogo2.png', class: 'logo', alt: 'Merch Cat' %>
+      <% end %>
+      <ul class="nav navbar-nav navbar-left hidden-xs">
+        <!--<li><a href="#">Login</a></li>-->
+        <!-- <li><a href="#"><i class="ion-android-mail"></i></a></li> -->
+      </ul>
+    </div>
+    <div class="collapse navbar-collapse">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#" data-toggle="modal" data-target="#myModal">Login</a></li>
+        <li><%= link_to 'Contact', contact_path %></li>
+        <!-- <li><a href="#">Menu 3</a></li> -->
+        <!-- <li class="visible-xs-block"><a href="#">Login</a></li> -->
+        <!-- <li><a href="#"><i class="ion-android-mail"></i></a></li> -->
+      </ul>
+    </div>
+    <!--/.nav-collapse -->
+  </div>
+  <div id="login-alert" class="alert alert-success" role="alert">
+    <i id="spinner" class="fa fa-circle-o-notch fa-spin fa-lg"></i>
+    <span class="sr-only">Error:</span>
+    <div><span id="alert-text">Sorry, an error has occurred.</span> <span id="try-again">Please try again.</span></div>
+  </div>
+</div>

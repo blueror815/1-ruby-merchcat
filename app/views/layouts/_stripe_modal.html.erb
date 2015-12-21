@@ -1,0 +1,57 @@
+<div class="modal inmodal" id="stripeModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog" style="width:270px; height:336px;">
+            <div class="modal-content animated bounceInRight">
+                <div class="modal-header">
+                    <button id="stripe-close-btn"  type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <div class="logo">
+                        <img class="img-circle" src="/assets/merch-kitty-logo.png">
+                    </div>
+                    <h6 id="strip-modal-title">Monthly Subscription</h6>
+                    <small style="font-size: 12px;" class="font-bold">7.99$/mo</small>
+                </div>
+                <div class="modal-body">
+                    <span class="payment-errors"></span>
+                    <div class="row">
+                        <div class="input-group">
+                            <span class="stripe-span input-group-addon">
+                                <i class="fa fa-envelope-o"></i>
+                            </span>
+                            <input class="stripe-input form-control" type="text" style="border-bottom-left-radius: 5px;
+                            border-top-left-radius: 5px;" placeholder="Email" id="email">
+                        </div>
+                    </div>
+
+                    <div class="row" style="margin-top: 20px">
+                        <div class="input-group">
+                            <span class="stripe-span input-group-addon">
+                                <i class="fa fa-credit-card"></i>
+                            </span>
+                            <input class="stripe-input form-control" type="tel" style="border-bottom-left-radius: 5px;
+                            border-top-left-radius: 5px;" placeholder="Card number"  id="card-number">
+                        </div>
+                    </div>
+
+                    <div class="row" style="padding-left: 18px;
+                    padding-right: 18px;">
+                        <div class="col-lg-6" style="padding-left: 0px; padding-right: 0px">
+                            <span class="stripe-span input-group-addon">
+                                <i class="fa fa-calendar-o"></i>
+                            </span>
+                            <input class="stripe-input form-control" type="text" style="border-bottom-left-radius: 5px;
+                            border-top-left-radius: 5px;" placeholder="MM/YY" id="exiry-date">
+                        </div>
+                        <div class="col-lg-6" style="padding-left: 0px; padding-right: 0px">
+                            <span class="stripe-span input-group-addon">
+                                <i class="fa fa-square-o"></i>
+                            </span>
+                            <input class="stripe-input form-control" type="text" style="border-bottom-left-radius: 5px;
+                            border-top-left-radius: 5px;" placeholder="CVC" id="cvc">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer" style="text-align: center">
+                    <button type="button" id="membership-upgrade-btn" class="btn btn-primary">Upgrade Membership</button>
+                </div>
+            </div>
+        </div>
+    </div>

@@ -1,0 +1,145 @@
+<style>
+
+  h5 {
+    text-align: center;
+    margin-top: 40px;
+  }
+
+  table {
+    width: 100%;
+    text-align: center;
+    border: 1px solid black;
+    border-collapse: collapse;;
+    border-spacing: 0;
+  }
+
+  table tr {
+    height: 25px;
+  }
+
+  table {
+    font-size: 13px;
+  }
+
+  table th {
+    border:  1px solid black;
+  }
+
+  table td{
+      border: 1px solid black;
+  }
+
+  div.signatures {
+    margin-top: 40px;
+  }
+
+</style>
+
+<div class="row show-info">
+  <div class="col-lg-12">
+    <div class="ibox float-e-margins">
+      <div class="ibox-title">
+        <h3 style="text-align: center">Show Settlement Report<hr></h3>
+        <table  class="table header">
+          <tbody>
+          <tr >
+            <td width="20%" class="title">Date</td>
+            <td><%= Time.parse(@show['date']).strftime("%m/%d/%y") %></td>
+            <td width="20%" class="title">Venue</td>
+            <td><%= @show['venue']['name'] %></td>
+          </tr>
+          <tr>
+            <td width="20%" class="title">City</td>
+            <td><%= @show['venue']['city'] %></td>
+            <td width="20%" class="title">State</td>
+            <td><%= @show['venue']['state'] %></td>
+          </tr>
+          <tr>
+            <td width="20%" class="title">Total Attendance</td>
+            <td></td>
+            <td width="20%" class="title">Venue Capacity</td>
+            <td></td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+      <br>
+      <br>
+      <div class="ibox-content">
+        <table style="text-align: center; margin-left: auto; margin-right:auto; border: 1px soild black; border-collapse: collapse; border-spacing:0" class="table header">
+          <thead >
+          <tr>
+            <th>#</th>
+            <th>Qty</th>
+            <th>Name</th>
+            <th>UPC</th>
+            <th>Item Price</th>
+            <th>Total $</th>
+          </tr>
+          </thead>
+          <tbody>
+          <% (1..@items.length).each do |i| %>
+              <tr class="gradeA">
+                <% @item = @items[i-1] %>
+                <td><%= @item['item']['id'] %></td>
+                <td><%= @item['quantity_in_cart'] %></td>
+                <td><%= @item['item']['nickname'] %></td>
+                <td><%= @item['item']['sku'] %></td>
+                <td><%= format("$%.2f", @item['item']['price']) %></td>
+                <td><%= format("$%.2f", @item['item']['price'].to_f * @item['quantity_in_cart'].to_f) %></td>
+              </tr>
+          <% end %>
+          </tbody>
+        </table>
+        <br>
+        <br>
+        <table class="table venue-take">
+          <tbody>
+          <tr>
+            <td width="30%" class="title">Gross Sales</td>
+            <td><%= @show['sales_amount'] ? format("$%.2f", @show['sales_amount']) : 0 %></td>
+          </tr>
+          <tr>
+            <td width="30%" class="title">Venue Cut %</td>
+            <td><%= @show['venue_cut'] %>%</td>
+          </tr>
+          <tr>
+            <td width="30%" class="title">Venue Cut Amount</td>
+            <td><%= format("$%.2f", @show['sales_amount'].to_f * (@show['venue_cut'].to_i * 0.01)) %></td>
+          </tr>
+          <tr>
+            <td width="30%" class="title">Net Sales</td>
+            <td><%= format("$%.2f", @show['sales_amount'].to_f - @show['sales_amount'].to_f * (@show['venue_cut'].to_i * 0.01)) %></td>
+          </tr>
+          </tbody>
+        </table>
+
+        <div class="signatures">
+          <!-- Signatures (blank lines for venue representative, artist representative… name and sign) -->
+          <div class="title"><b>Venue</b> Representative:</div> <br><br >
+          <div class="name">
+            Name:<hr>
+          </div>
+          <div class="signature">
+            Sign:<hr>
+          </div>
+        </div>
+        <div class="signatures">
+          <div class="title"><b>Artist</b> Representative:</div> <br> <br>
+          <div class="name">
+            Name:<hr>
+          </div>
+          <div class="signature">
+            Sign:<hr>
+          </div>
+          <br>
+          <br>
+          <br>
+          <div style="float: right; text-decoration: underline">
+            <%= Date.parse(Time.now.to_s) %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,248 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require_self
+ *= require animate/animate.css
+ *= require style
+ *= require font-awesome
+ */
+ //= require sweetalert/sweetalert.css
+
+li.nav-header {
+	background-color: #f3f3f4;
+}
+
+nav  li.dashboard-side.active > a{ 
+    background-color: #f3f3f4;
+}
+nav  li.dashboard-side a:hover {
+	background-color: #f7f9fa;
+}
+
+nav  li.dashboard-side > a{
+    background-color: white;
+}
+
+nav.navbar.dashboard {
+	background-color: #f3f3f4;	
+}
+
+nav.dashboard ul.navbar-right li a{
+	background-color: #f3f3f4;
+	border-bottom: 0px
+}
+
+nav.dashboard ul.navbar-right li a:hover{
+	background-color: #f7f9fa;
+}
+
+nav.dashboard ul.nav li a i {
+    display: inline-flex;
+    margin-right: 6px;
+    background-color: transparent;
+}
+
+// set style to subscribers
+div.subscribe-panel h1 {
+	text-align: center;
+}
+
+
+//set style for subscribe table
+table.subscriber-table thead tr th {
+	text-align:center;
+}
+
+.center {
+	text-align: center
+}
+
+
+// set style code btn style
+#code-btn-div {
+	padding-top: 0px;
+}
+
+#code-btn-div button#create-promo-code {
+	background-color: #1ab394;
+	border-color: #1ab394
+}
+
+.modal-header {
+	border-bottom: 0px;
+}
+
+
+div#profile-email-error-alert,
+div#profile-password-error-alert,
+div#payment-error-alert {
+	background-color: #f2dede;
+    border-color: #eed3d7;
+    color: #b94a48;
+    margin-bottom: 20px;
+    padding: 10px;
+    text-align: left;
+    border-radius: 4px;
+}
+
+/* Extra Small Devices, Phones */
+
+@media only screen and (min-width: 320px) and (max-width: 788px) {
+    div.profile-modal-left-col {
+        border-right: 0px
+    }
+}
+
+/* set style for stripe modal */
+
+form#stripe-form {
+	text-align: center
+}
+
+form > button.stripe-button-el {
+	width: 70%;
+	margin-top: 30px;
+}
+
+#stripeModal {
+	width: 320px;
+	margin-left: auto;
+	margin-right: auto;
+	z-index: 5000;
+}
+
+#strip-modal-title {
+	font-size: 15px;
+	font-weight: 700;
+	color: black;
+}
+
+div.logo img {
+	width:55px;
+	height: 50px;
+	border: 1px solid	
+}
+
+#stripe-close-btn {
+    height: 22px;
+    margin-top: 0px;
+    text-align: center;
+    width: 20px;
+}
+
+div.stripe-modal-header.modal-header {
+	padding: 10px 15px;
+}
+
+div.stripe-modal-body.modal-body {
+	padding: 20px 30px 60px;
+}
+
+span.stripe-span {
+	border: medium none;
+	font-size: 17px;
+    height: 35px;
+    margin-left: 2px;
+    margin-top: 2px;
+    padding-top: 10px;
+    position: absolute;
+    z-index: 10;
+    i {
+    	margin-left: 0;
+    }
+
+    i.fa-calendar-o, i.fa-square-o {
+    	margin-left: -3px;
+    }
+}
+
+
+input.stripe-input {
+	border-radius: 5px;
+	border-bottom-left-radius: 5px;
+    border-top-left-radius: 5px;
+	height: 40px;
+	padding-left: 36px;
+}
+
+input.stripe-input:focus {
+	border-color: #7caadd;
+
+}
+
+div.stripe-input-row > div.input-group {
+	padding-left: 0;
+    padding-right: 0;
+    width: 100%;
+}
+
+div.stripe-input-row-calendar-cvc {
+	padding-left: 0;
+    padding-right: 0;
+}
+
+div.stripe-input-row > div.input-group input,
+div.stripe-input-row-calendar-cvc input,
+#stripe-cvc {
+	text-align: center;
+}
+
+input#stripe-card-number {
+	padding-left: 45px;
+    text-align: left;
+}
+
+#stripe-cvc {
+	padding-left: 40px;
+    text-align: left;
+}
+
+div#stripe-modal-hidden {
+	background-color: black;
+	display:none;
+    height: 100%;
+    opacity: 0.3;
+    position: absolute;
+    top: 0;
+    width: 140%;
+    z-index: 4000;
+}
+
+div#stripe-spinner {
+	width: 60px;
+	height: 45px;
+	border-radius: 10px;
+	background-color: #4dd888;
+}
+
+div#stripe-spinner-container {
+	left: -1px;
+    margin-left: auto !important;
+    margin-right: auto;
+    position: absolute;
+    top: 130px;
+    width: 100%;
+    z-index: 5000;
+}
+
+button.cancel-membership {
+    position: relative;
+    margin: auto;
+}
+
+button.upgrade-membership {
+	margin: auto;
+	position: relative;
+}
+
+input#stripe-expiry-date {
+	padding-left: 45px;
+    text-align: left;
+}

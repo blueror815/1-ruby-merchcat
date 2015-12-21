@@ -1,0 +1,490 @@
+<div class="wrapper wrapper-content">
+<div class="row">
+    <div class="col-lg-12 ">
+        <div class="panel">
+            <div class="panel-heading">
+                <div panel-tools></div>
+            </div>
+            <div class="panel-body" style="padding: 10px 20px;">
+                <div class="pull-right" style="margin-top: -30px; margin-right: 10px;">
+                    <!-- <a href="#" class="btn btn-xs btn-default">Month</a> -->
+                    <!-- <a href="#" class="btn btn-xs btn-default">Shows</a> -->
+                </div>
+                <div class="row">
+                    <div class="col-md-3 text-center">
+                        <div>
+                            <h1 id="six_month_revenue" class="font-extra-bold m-t-xl m-b-xs">
+                                $0.00
+                            </h1>
+                            <small>Last 6 Months</small>
+                        </div>
+                        <div>
+                            <h1 id="order_label" class="font-extra-bold m-t-xl m-b-xs">
+                                0
+                            </h1>
+                            <small>Items Sold</small>
+                        </div>
+                    </div>
+                    <div class="col-md-6 text-center" ng-controller="chartjsCtrl">
+                        <div class="panel">
+                            <div class="panel-heading">
+                                <div panel-tools></div>
+                                Last 6 Months
+                            </div>
+                             <div class="panel-body">
+                                <div>
+                                    <canvas id="salesBarChart" height="140"></canvas>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-md-3 text-center">
+                        <div class="cart-amount">
+                            <h1 id="average_cart" class="font-extra-bold m-t-xl m-b-xs">
+                                $0.00
+                            </h1>
+                            <small>Average Cart Amount</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <!--<div class="col-lg-4 col-md-4">-->
+        <!--<div class="panel stats">-->
+            <!--<div class="panel-body h-200">-->
+                <!--<div class="stats-title pull-left">-->
+                    <!--Today revenue-->
+                <!--</div>-->
+                <!--<div class="stats-icon pull-right">-->
+                    <!--<i class="pe-7s-cash fa-4x"></i>-->
+                <!--</div>-->
+                <!--<div class="clearfix"></div>-->
+                 <!--<div class="flot-chart" style="height: 70px;">-->
+                        <!--<div class="flot-chart-content" id="flot-income-chart"></div>-->
+                 <!--</div>-->
+                <!--<div class="m-t-xs">-->
+
+                    <!--<div class="row">-->
+                        <!--<div class="col-xs-5">-->
+                            <!--<small class="stat-label">Today</small>-->
+                            <!--<h4>$230.00 </h4>-->
+                        <!--</div>-->
+                        <!--<div class="col-xs-7">-->
+                            <!--<small class="stat-label">Last week</small>-->
+                            <!--<h4>$7980.60</h4>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+
+        <!--</div>-->
+    <!--</div>-->
+
+    <!--<div class="col-lg-4 col-md-4">-->
+         <!--<div class="panel stats">-->
+            <!--<div class="panel-body h-200">-->
+                <!--<div class="stats-title pull-left">-->
+                    <!--Item type-->
+                <!--</div>-->
+                <!--<div class="pull-right" >-->
+                    <!--<a href="#" class="btn btn-xs btn-default">Month</a>-->
+                    <!--<a href="#" class="btn btn-xs btn-default">Overall</a>-->
+                <!--</div>-->
+                <!--<div class="clearfix"></div>-->
+                <!--<div class="flot-pie-chart" >-->
+                    <!--<div class="flot-chart-pie-content" id="flot-pie-chart"></div>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+
+    <!--<div class="col-lg-4 col-md-4">-->
+       <!--<div class="panel stats">-->
+            <!--<div class="panel-body h-200 list">-->
+                <!--<div class="stats-title pull-left">-->
+                    <!--Items Sold-->
+                <!--</div>-->
+                <!--<div class="stats-icon pull-right">-->
+                    <!--<i class="pe-7s-display1 fa-4x"></i>-->
+                <!--</div>-->
+                <!--<div class="m-t-xl">-->
+                    <!--<small>-->
+                        <!--Total items sold each month-->
+                    <!--</small>-->
+                <!--</div>-->
+                <!--<br>-->
+                <!--<img style="margin-left: -5px;" src="/assets/progressbar.png" />-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+
+    <!--<div class="col-lg-4 col-md-4">-->
+        <!--<div class="panel stats">-->
+            <!--<div class="panel-body h-200" style="padding-right: 15px;">-->
+                <!--<div class="stats-title pull-left">-->
+                    <!--2015 Revenue-->
+                <!--</div>-->
+                <!--<div class="pull-right">-->
+                    <!--<a href="#" class="btn btn-xs btn-default">Year</a>-->
+                    <!--<a href="#" class="btn btn-xs btn-default">Overall</a>-->
+                <!--</div>-->
+                <!--<div class="m-t-xl text-center">-->
+                    <!--<h1 class="text-success">$226,802</h1>-->
+                    <!--<span class="font-bold no-margins">-->
+                        <!--Total revenue for the year-->
+                    <!--</span>-->
+                    <!--<br/>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+
+
+    <!--<div class="col-lg-4 col-md-4">-->
+        <!--<div class="panel">-->
+            <!--<div class="panel-heading">-->
+                <!--<div panel-tools></div>-->
+                <!--TOP SELLERS-->
+            <!--</div>-->
+
+                <!--<div class="pull-right" style="margin-top: -30px; margin-right: 10px;">-->
+                    <!--<a href="#" class="btn btn-xs btn-default">Month</a>-->
+                    <!--<a href="#" class="btn btn-xs btn-default">Overall</a>-->
+                <!--</div>-->
+            <!--<div class="panel-body list">-->
+                <!--<div class="list-item-container">-->
+                    <!--<div class="list-item">-->
+                        <!--<h3 class="no-margins font-extra-bold text-success">423</h3>-->
+                        <!--<small>Item Name One</small>-->
+                        <!--<div class="pull-right font-bold">$726 </div>-->
+                    <!--</div>-->
+                    <!--<div class="list-item">-->
+                        <!--<h3 class="no-margins font-extra-bold text-success">4,422</h3>-->
+                        <!--<small>Item Name Two</small>-->
+                        <!--<div class="pull-right font-bold">$13</div>-->
+                    <!--</div>-->
+                    <!--<div class="list-item">-->
+                        <!--<h3 class="no-margins font-extra-bold text-success">9,180</h3>-->
+                        <!--<small>Item Name three</small>-->
+                        <!--<div class="pull-right font-bold">$22</div>-->
+                    <!--</div>-->
+                    <!--<div class="list-item">-->
+                        <!--<h3 class="no-margins font-extra-bold text-success">1,450</h3>-->
+                        <!--<small>Item Name Four</small>-->
+                        <!--<div class="pull-right font-bold">$44</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+    
+    <!--<div class="col-lg-4 col-md-4">-->
+        <!--<div class="panel">-->
+            <!--<div class="panel-heading">-->
+                <!--<div panel-tools></div>-->
+                <!--TOP SHOWS-->
+            <!--</div>-->
+                 <!--<div class="pull-right" style="margin-top: -30px; margin-right: 10px;">-->
+                    <!--<a href="#" class="btn btn-xs btn-default">Month</a>-->
+                    <!--<a href="#" class="btn btn-xs btn-default">Overall</a>-->
+                <!--</div>-->
+            <!--<div class="panel-body list">-->
+                <!--<div class="list-item-container">-->
+                    <!--<div class="list-item">-->
+                        <!--<h3 class="no-margins font-extra-bold text-success">$12,773</h3>-->
+                        <!--<small>6/12/15 venue one</small>-->
+                        <!--<div class="pull-right font-bold">64 items</div>-->
+                    <!--</div>-->
+                    <!--<div class="list-item">-->
+                        <!--<h3 class="no-margins font-extra-bold text-success">$1,422</h3>-->
+                        <!--<small>3/14/15 venue two</small>-->
+                        <!--<div class="pull-right font-bold">22 items</div>-->
+                    <!--</div>-->
+                    <!--<div class="list-item">-->
+                        <!--<h3 class="no-margins font-extra-bold text-success">$3,180</h3>-->
+                        <!--<small>7/13/15 venue three</small>-->
+                        <!--<div class="pull-right font-bold">37 items</div>-->
+                    <!--</div>-->
+                    <!--<div class="list-item">-->
+                        <!--<h3 class="no-margins font-extra-bold text-success">$1,450</h3>-->
+                        <!--<small>4/27/15 venue four</small>-->
+                        <!--<div class="pull-right font-bold">12 items</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel">
+            <div class="panel-heading">
+                <div class="ibox-tools">
+                <a class="collapse-link">
+                    <i class="fa fa-chevron-down"></i>
+                </a>
+            </div>
+                CURRENT INVENTORY
+            </div>
+            <div class="panel-body list">
+                <div id="item-data" class="table-responsive project-list">
+                    Loading Items...
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+
+<div class="col-lg-8">
+
+</div>
+
+
+</div>
+</div>
+
+<%= javascript_tag do %>
+    window.mct = '<%= @api_token %>'
+<% end %>
+
+<style>
+    
+    .flot-chart-pie-content {
+        width: 210px;
+        height: 110px;
+        margin: auto;
+        top: 10px;
+        left: -10px;
+    }
+    .flot-pie-chart {
+        display: block;
+        padding-top: 20px;
+        height: 130px;
+    }
+</style>
+
+<% content_for :javascript do %>
+
+<script type="text/javascript">
+
+$(function() {
+
+          /**
+         * Flot charts 2 data and options
+         */
+        var chartIncomeData = [
+            {
+                label: "line",
+                data: [ [1, 10], [2, 26], [3, 16], [4, 36], [5, 32], [6, 51] ]
+            }
+        ];
+
+        var chartIncomeOptions = {
+            series: {
+                lines: {
+                    show: true,
+                    lineWidth: 0,
+                    fill: true,
+                    fillColor: "#4dd888"
+
+                }
+            },
+            colors: ["#4dd888"],
+            grid: {
+                show: false
+            },
+            legend: {
+                show: false
+            }
+        };
+
+        $.plot($("#flot-income-chart"), chartIncomeData, chartIncomeOptions);
+
+          var data3 = [
+            { label: "MUSIC", data: 16, color: "#4DD888", },
+            { label: "APPAREL", data: 6, color: "#A5ffdd", },
+            { label: "POSTERS", data: 22, color: "#91c2b5", },
+            { label: "STICKERS", data: 32, color: "#44dddd", },
+            { label: "OTHER", data: 7, color: "#BEEE62", }
+        ];
+
+        var chartUsersOptions3 = {
+            series: {
+                pie: {
+                    show: true
+                }
+            },
+            grid: {
+                hoverable: true
+            },
+            tooltip: true,
+            tooltipOpts: {
+                content: "%p.0%, %s", // show percentages, rounding to 2 decimal places
+                shifts: {
+                    x: 20,
+                    y: 0
+                },
+                defaultTheme: false
+            }
+        };
+
+        $.plot($("#flot-pie-chart"), data3, chartUsersOptions3);
+
+    var data2 = [
+        [gd(2012, 1, 1), 7], [gd(2012, 1, 2), 6], [gd(2012, 1, 3), 4], [gd(2012, 1, 4), 8],
+        [gd(2012, 1, 5), 9], [gd(2012, 1, 6), 7], [gd(2012, 1, 7), 5], [gd(2012, 1, 8), 4],
+        [gd(2012, 1, 9), 7], [gd(2012, 1, 10), 8], [gd(2012, 1, 11), 9], [gd(2012, 1, 12), 6],
+        [gd(2012, 1, 13), 4], [gd(2012, 1, 14), 5], [gd(2012, 1, 15), 11], [gd(2012, 1, 16), 8],
+        [gd(2012, 1, 17), 8], [gd(2012, 1, 18), 11], [gd(2012, 1, 19), 11], [gd(2012, 1, 20), 6],
+        [gd(2012, 1, 21), 6], [gd(2012, 1, 22), 8], [gd(2012, 1, 23), 11], [gd(2012, 1, 24), 13],
+        [gd(2012, 1, 25), 7], [gd(2012, 1, 26), 9], [gd(2012, 1, 27), 9], [gd(2012, 1, 28), 8],
+        [gd(2012, 1, 29), 5], [gd(2012, 1, 30), 8], [gd(2012, 1, 31), 25]
+    ];
+
+    var data3 = [
+        [gd(2012, 1, 1), 800], [gd(2012, 1, 2), 500], [gd(2012, 1, 3), 600], [gd(2012, 1, 4), 700],
+        [gd(2012, 1, 5), 500], [gd(2012, 1, 6), 456], [gd(2012, 1, 7), 800], [gd(2012, 1, 8), 589],
+        [gd(2012, 1, 9), 467], [gd(2012, 1, 10), 876], [gd(2012, 1, 11), 689], [gd(2012, 1, 12), 700],
+        [gd(2012, 1, 13), 500], [gd(2012, 1, 14), 600], [gd(2012, 1, 15), 700], [gd(2012, 1, 16), 786],
+        [gd(2012, 1, 17), 345], [gd(2012, 1, 18), 888], [gd(2012, 1, 19), 888], [gd(2012, 1, 20), 888],
+        [gd(2012, 1, 21), 987], [gd(2012, 1, 22), 444], [gd(2012, 1, 23), 999], [gd(2012, 1, 24), 567],
+        [gd(2012, 1, 25), 786], [gd(2012, 1, 26), 666], [gd(2012, 1, 27), 888], [gd(2012, 1, 28), 900],
+        [gd(2012, 1, 29), 178], [gd(2012, 1, 30), 555], [gd(2012, 1, 31), 993]
+    ];
+
+
+    var dataset = [
+        {
+            label: "Number of orders",
+            data: data3,
+            color: "#1ab394",
+            bars: {
+                show: true,
+                align: "center",
+                barWidth: 24 * 60 * 60 * 600,
+                lineWidth: 0
+            }
+
+        }, {
+            label: "Payments",
+            data: data2,
+            yaxis: 2,
+            color: "#1C84C6",
+            lines: {
+                lineWidth: 1,
+                show: true,
+                fill: true,
+                fillColor: {
+                    colors: [{
+                        opacity: 0.2
+                    }, {
+                        opacity: 0.2
+                    }]
+                }
+            },
+            splines: {
+                show: false,
+                tension: 0.6,
+                lineWidth: 1,
+                fill: 0.1
+            }
+        }
+    ];
+
+
+    var options = {
+        xaxis: {
+            mode: "time",
+            tickSize: [3, "day"],
+            tickLength: 0,
+            axisLabel: "Date",
+            axisLabelUseCanvas: true,
+            axisLabelFontSizePixels: 12,
+            axisLabelFontFamily: 'Arial',
+            axisLabelPadding: 10,
+            color: "#d5d5d5"
+        },
+        yaxes: [{
+            position: "left",
+            max: 1070,
+            color: "#d5d5d5",
+            axisLabelUseCanvas: true,
+            axisLabelFontSizePixels: 12,
+            axisLabelFontFamily: 'Arial',
+            axisLabelPadding: 3
+        }, {
+            position: "right",
+            clolor: "#d5d5d5",
+            axisLabelUseCanvas: true,
+            axisLabelFontSizePixels: 12,
+            axisLabelFontFamily: ' Arial',
+            axisLabelPadding: 67
+        }
+        ],
+        legend: {
+            noColumns: 1,
+            labelBoxBorderColor: "#000000",
+            position: "nw"
+        },
+        grid: {
+            hoverable: false,
+            borderWidth: 0
+        }
+    };
+
+    function gd(year, month, day) {
+        return new Date(year, month - 1, day).getTime();
+    }
+
+    var previousPoint = null, previousLabel = null;
+
+    $.plot($("#flot-dashboard-chart"), dataset, options);
+
+    var mapData = {
+        "US": 298,
+        "SA": 200,
+        "DE": 220,
+        "FR": 540,
+        "CN": 120,
+        "AU": 760,
+        "BR": 550,
+        "IN": 200,
+        "GB": 120
+    };
+
+    $('#world-map').vectorMap({
+        map: 'world_mill_en',
+        backgroundColor: "transparent",
+        regionStyle: {
+            initial: {
+                fill: '#e4e4e4',
+                "fill-opacity": 0.9,
+                stroke: 'none',
+                "stroke-width": 0,
+                "stroke-opacity": 0
+            }
+        },
+
+        series: {
+            regions: [{
+                values: mapData,
+                scale: ["#1ab394", "#22d6b1"],
+                normalizeFunction: 'polynomial'
+            }]
+        }
+    });
+
+});
+
+
+</script>
+
+<% end %>

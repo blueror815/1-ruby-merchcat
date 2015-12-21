@@ -1,0 +1,100 @@
+<div class="wrapper wrapper-content animated fadeInRight">
+
+  <% if @shows && @shows.length > 0 %>
+
+      <% (1..[@shows.length, 8].min).each do |i| %>
+
+          <% @show = @shows[i-1] %>
+
+          <% if i % 4 == 0 %> <div class="row"> <% end %>
+
+          <div class="col-md-3">
+            <div class="ibox">
+              <div class="ibox-content product-box">
+
+                <div class="product-imitation">
+                  <%= Time.parse(@show['date']).strftime("%m/%d/%y %l:%M %p") %>
+                </div>
+                <div class="product-desc">
+                  <span class="product-price">
+                      <%= format("$%.2f", @show['sales_amount']) %>
+                  </span>
+                  <a href="/shows/<%= @show['id'] %>" class="product-name"> <%= @show['venue']['name'] %> </a>
+
+                  <div class="m-t text-righ">
+
+                    <a href="/shows/<%= @show['id'] %>" class="btn btn-xs btn-outline btn-primary">Info <i class="fa fa-long-arrow-right"></i> </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <% if i % 4 == 0 %> </div> <% end %>
+
+      <% end %>
+
+
+      <div class="row">
+        <div class="col-lg-12 show-table">
+          <div class="ibox float-e-margins">
+            <div class="ibox-title">
+              <h5>Shows</h5>
+            </div>
+            <div class="ibox-content">
+
+              <table class="footable table table-stripped" data-page-size="8" data-filter=#filter>
+                <thead>
+                <tr>
+                  <th>Venue Name</th>
+                  <th>Show Date</th>
+                  <th>Total Revenue</th>
+                  <th>Items Sold</th>
+                  <th>Info</th>
+                  <th data-hide="phone,tablet">Platform(s)</th>
+
+                </tr>
+                </thead>
+                <tbody>
+                  <% (1..@shows.length).each do |i| %>
+                    <tr class="gradeA">
+                      <% @show = @shows[i-1] %>
+                      <td><%= @show['venue']['name'] %></td>
+                      <td><%= Time.parse(@show['date']).strftime("%m/%d/%y %l:%M %p") %></td>
+                      <td><%= @show['sales_amount'] ? format("$%.2f", @show['sales_amount']) : 0.00 %></td>
+                      <td class="center"><%= @show['total_items_sold'] %></td>
+                      <td><a href="/shows/<%= @show['id'] %>" class="btn btn-xs btn-outline btn-primary">Info <i class="fa fa-long-arrow-right"></i> </a></td>
+                    </tr>
+                  <% end %>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <td colspan="5">
+                    <ul class="pagination pull-right"></ul>
+                  </td>
+                </tr>
+              </tfoot>
+            </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+  <% else %>
+    No shows with sales data available. Once you've completed some sales within the Merch Cat app, they'll show up here.
+  <% end %>
+
+  <script type="text/javascript">
+
+
+$(function() {
+
+    $('.footable').footable();
+    var newDate = $('.product-imitation').val();
+    console.log(newDate);
+
+});
+
+</script>
+
+</div>

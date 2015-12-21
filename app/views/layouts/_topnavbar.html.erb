@@ -1,0 +1,23 @@
+<div class="row border-bottom">
+    <nav class="navbar dashboard navbar-static-top" role="navigation" style="margin-bottom: 0; background-color: #f3f3f4">
+        <div class="navbar-header">
+            <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
+
+        </div>
+        <ul class="nav navbar-top-links navbar-right pull-right">
+            <li>
+                <!-- <span class="m-r-sm text-muted welcome-message">Merch Cat Administration</span> -->
+            </li>
+
+            <% hide_top_bar = ((params[:top_toolbar] && params[:top_toolbar] == 'false') || @is_mobile) %>
+            <% if !hide_top_bar %>
+            <li>
+                <a class="right-sidebar-toggle">
+                    <i class="fa fa-tasks" style="font-size: 16px"></i>
+                </a>
+            </li>
+            <% end %>
+
+        </ul>
+    </nav>
+</div>

@@ -1,0 +1,163 @@
+<div id="subscribe">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3">
+        <h3 class="medium">Get merch tips in your inbox!</h3>
+
+        <!-- <form role="form" action="register.php" method="post" enctype="plain">
+          <input type="email" name="email" class="subscribe-input" placeholder="your@email.com" required>
+          <button class='btn btn-lg  btn-white subscribe-submit' type="submit">Subscribe</button>
+        </form> -->
+        <!-- Begin MailChimp Signup Form -->
+        <link href="//cdn-images.mailchimp.com/embedcode/slim-081711.css" rel="stylesheet" type="text/css">
+        <style type="text/css">
+            #mc_embed_signup{background:#000000; font:14px Helvetica,Arial,sans-serif; font-family: "Helvetica Neue", Helvetica, Arial, sans-serif, sans-serif; width: 100%; margin: 0; padding: 0;}
+            #mc_embed_signup form {padding: 0; width: 100%; margin: 0;}
+            #mc_embed_signup input.email{border: 2px solid #ffffff;color: #ffffff; padding: 11px 10px 12px 15px;float: left; width: 70%; display: inline; clear: none; margin-right: 15px;}
+            #mc_embed_signup input.email::-webkit-input-placeholder {color: #ffffff;}
+            #mc_embed_signup input:-moz-placeholder { color: #ffffff;}
+            #mc_embed_signup input::-moz-placeholder { color: #ffffff;}
+            #mc_embed_signup input:-ms-input-placeholder { color: #ffffff;}
+            #mc_embed_signup input.btn {clear: none;color: white; display: inline-block; border: 3px solid white; background: transparent; border-radius: 0px;padding: 7px 18px; font-size: 18px; line-height: 1.33;font-weight: 300; float: left; max-width: 25%; margin: 0;}
+            @media only screen and (max-width: 480px) {
+              #mc_embed_signup input.email {
+                width: 70%;
+                margin-left: 15%;
+                margin-bottom: 60px;
+                }
+                #mc_embed_signup input.btn {position: absolute;margin-left: auto;margin-right: auto;left: 0;right: 0; top: 60px; max-width: 120px; }
+              }
+            /* Add your own MailChimp form style overrides in your site stylesheet or in this style block.
+               We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
+        </style>
+     <div id="mc_embed_signup">
+          <form action="//merchcat.us12.list-manage.com/subscribe/post?u=97d9c0f01a650f274ff6864b1&amp;id=11c41945a0" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+              <div id="mc_embed_signup_scroll">
+                <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="your@email.com" required>
+                <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups -->
+                <div style="position: absolute; left: -5000px;"><input type="text" name="b_97d9c0f01a650f274ff6864b1_11c41945a0" tabindex="-1" value=""></div>
+                <input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="btn btn-lg  btn-white subscribe-submit">
+              </div>
+          </form>
+        </div> 
+
+<!--End mc_embed_signup-->
+      </div>
+    </div>
+    <!--row -->
+
+  </div>
+  <!--/container -->
+</div>
+<!--/F -->
+
+<div id="closer">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 text-center left">
+        <h3>Download the App</h3>
+
+        <p>Available now in the app store for iPad and iPhone.</p>
+        <a href="https://itunes.apple.com/us/app/merch-cat-inventory-management/id994196941" target="_blank">
+          <%= image_tag 'app-store-logo.png', class: 'img-responsive', alt: 'Available on the App Store' %>
+        </a>
+      </div>
+      <div class="col-md-6 text-center right">
+        <h3>On the Road with Merch Cat</h3>
+        <p>Follow us to see how artists are using Merch Cat to better manage fan sales.</p>
+
+        <div class="center-block social">
+          <a href="https://www.facebook.com/merchcat?ref=br_rs"><div class="logos fbook"></div></a>
+          <a href="https://instagram.com/merch_cat/"><div class="logos gram"></div></a>
+<!--           <div class="logos tube"></div> -->
+          <a href="https://twitter.com/merch_cat"><div class="logos tweet"></div></a>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12 copyright">&copy; 2015 Merch Cat | <a href="/terms">Terms</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog modal-sm" role="document">
+    <div class="modal-content">
+
+      <div class="modal-body">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <div class="login">
+          <%= form_tag '' do %>
+              <%= email_field_tag(:email, nil, placeholder: 'Email', id: 'modal_email') %><br /><br />
+              <%= password_field_tag(:password, nil, placeholder: 'Password', id: 'modal_password') %><br /><br />
+              <%= submit_tag('Submit', id: 'modal_login_submit', class: 'btn btn-lg btn-transparent') %>
+          <% end %><button class="btn btn-lg btn-transparent" id="modal-spinner-button">Submit <i class="fa fa-circle-o-notch fa-spin"></i></button>
+
+          <div id="modal_auth_form_message_container" class="message_container">
+            <span id="modal_auth_form_message_spinner"></span>
+            <span id="modal_auth_form_message"></span>
+          </div>
+        </div>
+      </div>
+      <!-- <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div> -->
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="signUpModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog modal-sign-up" role="document">
+    <div class="modal-content">
+       <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h3 class="modal-title"><span id="trial_duration_text">30</span>-Day Free Trial</h3>
+        <p>Get to know us. No credit card required. After we prove worthy on the road, Merch Cat is only $7.99 per month for unlimited show sales.</p>
+      </div>
+      <div class="modal-body">
+        <div class="login">
+          <%= form_tag '' do %>
+              <%= email_field_tag(:email, nil, placeholder: 'Email', id: 'signup_email') %><br /><br />
+              <%= password_field_tag(:password, nil, placeholder: 'Password', id: 'signup_password') %><br /><br />
+              <%= password_field_tag(:confirm_pass, nil, placeholder: 'Confirm Password', id: 'signup_confirm_password') %><br /><br />
+              <%= submit_tag('Submit', id: 'modal_signup_submit', class: 'btn btn-lg btn-transparent') %>
+              <button class="btn btn-lg btn-transparent" id="modal-signup-spinner-button">Submit <i class="fa fa-circle-o-notch fa-spin"></i></button>
+          <% end %>
+
+          <div id="modal_signup_auth_form_message_container" class="message_container">
+            <span id="modal_signup_auth_form_message_spinner"></span>
+            <span id="modal_signup_auth_form_message"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="signUpSuccessModal" tabindex="-1" role="dialog" aria-labelledby="signUpSuccessModalLabel">
+  <div class="modal-dialog modal-sign-up" role="document">
+    <div class="modal-content">
+       <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h3 class="modal-title">Welcome</h3>
+      </div>
+      <div class="modal-body">
+        <p>Get ready to merch better with Merch Cat. Download your app, sign in and start managing inventory right now.</p>
+
+        <p>If you plan to accept credit cards, Merch Cat supports <a href="http://www.paypal.com/here">PayPal Here</a>. Their free Mobile Card Reader creates faster checkout lines and more ways for fans to pay.</p>
+
+        <p>Thanks and enjoy!</p>
+        <a href="https://itunes.apple.com/us/app/merch-cat-inventory-management/id994196941" target="_blank">
+          <%= image_tag 'app-store-logo.png', class: 'aligncenter', alt: 'Available on the App Store' %>
+        </a>
+      </div>
+      <!-- <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div> -->
+
+    </div>
+  </div>
+</div>

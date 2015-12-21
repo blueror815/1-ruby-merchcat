@@ -1,0 +1,49 @@
+/* CONTACT SECTION */
+
+#contact {
+    border-bottom: 1px solid #000;
+    margin-bottom: 0;
+    #contact-form {
+        padding: 30px 0 30px 5%;
+        text-align: left;
+        input,
+        textarea {
+            border: 2px solid #000;
+            color: #000;
+        }
+        #message {
+            width: 100%;
+        }
+    }
+}
+
+#contact-lower {
+    // border-bottom: 1px solid #000;
+    #subscribe {
+        padding: 20px 0;
+        .row {
+            h3 {
+                margin-top: 0;
+            }
+            @media only screen and (min-device-width: 320px) and (max-device-width: 568px) {
+                .subscribe-submit {
+                    margin-top: 10px;
+                }
+            }
+        }
+    }
+    #closer {
+        .left,
+        .right {
+            margin-top: 20px;
+        }
+        .left {
+            border-right: 1px solid black;
+        }
+        @media only screen and (min-device-width: 320px) and (max-device-width: 768px) {
+            .left {
+              border-right: none;
+            }
+        }
+    }
+}

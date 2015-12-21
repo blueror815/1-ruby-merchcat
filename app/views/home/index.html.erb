@@ -1,0 +1,176 @@
+<% content_for :head do %>
+  <title>Merch Cat - inventory management, mobile payments & sales reporting for musicians</title>
+<% end %>
+<%= render 'home/header' %>
+
+<div id="hero">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-7">
+        <%= image_tag 'ipad2.png', class: 'img-responsive aligncenter ipad hidden-sm hidden-xs' %>
+      </div>
+      <div class="col-md-5 right">
+        <h2>Turn Stagefront into Storefront</h2>
+
+        <p>Merch Cat lets you take every opportunity to turn stagefront into storefront, making it easy to handle the business end of being on tour. Turning your iOS device into your merch manager with Merch Cat is the best way to organize inventory, simplify payments and get real-time reports.</p>
+        <a href="https://itunes.apple.com/us/app/merch-cat-inventory-management/id994196941" target="_blank">
+          <%= image_tag 'app-store-logo.png', class: 'aligncenter' %>
+        </a>
+        <%= image_tag 'ipad2.png', class: 'aligncenter ipad visible-sm visible-xs' %>
+      </div>
+    </div>
+  </div>
+  <!-- /.container -->
+</div>
+<!--/Hero -->
+
+<div id="terms">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 login">
+        <h3>Reporting at Your Fingertips</h3>
+
+        <div id="login_container">
+            <p>Login to see up to the minute merch reports and know what sells best in every city you play.</p>
+
+            <%= form_tag '' do %>
+              <%= email_field_tag(:email, nil, placeholder: 'Email') %><br /><br />
+              <%= password_field_tag(:password, nil, placeholder: 'Password') %><br /><br />
+              <%= submit_tag('Submit', id: 'login_submit', class: 'btn btn-lg btn-transparent') %>
+            <% end %>
+            <button class="btn btn-lg btn-transparent" id="spinner-button">Submit<i class="fa fa-circle-o-notch fa-spin"></i></button>
+        </div>
+        <div class="ibox float-e-margins">
+            <div class="ibox-content">
+                <div class="text-center">
+                    <button id="forget-password" type="button" data-toggle="modal" data-target="#forget-password-modal">
+                        Forgot password?
+                    </button>
+                </div>
+                <div class="modal inmodal fade" id="forget-password-modal" tabindex="-1" role="dialog" aria-hidden="true">
+                    <div class="forget-password-modal modal-dialog modal-sm">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                <h3 class="modal-title">Reset Password</h3>
+                                <br>
+                                <p style="padding-right: 20px; padding-left: 20px">Please enter your email on file and we will send you a new password.</p>
+                            </div>
+                            <div class="modal-body">
+                                <div class="form-group"><input type="email" placeholder="Email" class="form-control" id="forget-password-email"></div>
+                                <div id="forget-error-alert" class="alert alert-success" role="alert" style="display: none">
+                                  <div><span id="error-text"></span></div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" id="forget-password-btn" class="btn btn-lg btn-transparent">Submit <i class="fa fa-circle-o-notch fa-spin" style="display:none"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </div>
+      <div class="col-md-8 detail">
+        <div class="row">
+          <div class="col-md-6 subscription-cta">
+            <h3>Musician Friendly Pricing</h3>
+
+            <p>We set out with one goal in mind: to make merch management affordable for every artist. Whether you are playing patios or amphitheaters, we help you sell more.</p>
+
+            <div class="cost">Only $7.99 a month!</div>
+
+            <p>
+              <a href="#" data-toggle="modal" data-target="#signUpModal"><button class="btn btn-lg btn-transparent">Sign Up Today</button></a>
+            </p>
+          </div>
+          <div class="col-md-6 phone-shot">
+            <%= image_tag 'iphone-terms.png', alt: 'Merch Cat App' %>
+          </div>
+        </div>
+        <!-- /internal row -->
+      </div>
+      <!-- /col-md-8 -->
+    </div>
+    <!-- /outer-row  -->
+  </div>
+  <!-- /container -->
+</div>
+<!-- /terms -->
+
+<div id="video">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-7 placeholder">
+        <!-- <img src="assets/img/video-placeholder-2.png" class="img-responsive aligncenter"/> -->
+        <!-- 16:9 aspect ratio -->
+        <div class="embed-responsive embed-responsive-16by9">
+        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/ifOG_9dQiQg?rel=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
+        <!-- <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/ifOG_9dQiQg?rel=0" frameborder="0" allowfullscreen></iframe> -->
+        </div>
+      </div>
+      <div class="col-md-5 merch-better">
+        <%= image_tag 'merch-kitty-logo.png' %>
+
+        <!-- <h2>MERCH CAT</h2> -->
+
+        <h3>Merch Better with Merch Cat</h3>
+
+        <p>Managing your merch shouldn’t feel like managing a business. Spend more time on your music and less
+          on spreadsheets with Merch Cat.</p>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div id="try-merchcat">
+  <div class="container">
+    <div class="row text-center">
+      <h3 class="hidden-xs medium">Try Merch Cat free for 30 days!
+        <a href="#" data-toggle="modal" data-target="#signUpModal"><button class="btn btn-lg btn-oreo">Start Free Trial</button></a>
+      </h3>
+      <h3 class="visible-xs-block medium">Try Merch Cat free for 30 days!</h3>
+      <a href="#" data-toggle="modal" data-target="#signUpModal"><button class="btn btn-lg btn-transparent btn-oreo visible-xs-block">Start Free Trial</button></a>
+    </div>
+  </div>
+</div>
+
+<div class="marketing-row lets-do-this">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 promo">
+        <%= image_tag 'phone-icon.png' %>
+        <h4>Mobile Inventory Management</h4>
+
+        <p>So easy your backup drummer can do it! Just upload your inventory, set your item prices and immediately connect fans to your latest merch all before soundcheck.</p>
+      </div>
+      <div class="col-md-4 promo">
+        <%= image_tag 'ipad-icon.png' %>
+        <h4>Sell Merch Anywhere</h4>
+
+        <p>Playing for a packed room or just a few diehard fans may fuel your soul, but you need to sell a few t-shirts to fuel the van. Merch Cat is your all-in-one solution.</p>
+      </div>
+      <div class="col-md-4 promo">
+        <%= image_tag 'laptop-icon.png' %>
+        <h4>Real-Time Sales Reporting</h4>
+
+        <p>Managing your band is a lot like running a small business, but who says it has to be boring? Instantly view all of your sales and inventory at a glance with Merch Cat.</p>
+      </div>
+    </div>
+    <div class="row text-center">
+      <%= image_tag 'ipad-mini.png', class: 'main' %>
+    </div>
+
+  </div>
+</div>
+
+<!--<div class="marketing-row">-->
+<!--<div class="container">-->
+<!--<div class="row text-center">-->
+<!--<h3>Marketing Row 3 (TBD)</h3>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+
+<%= render 'home/footer' %>
