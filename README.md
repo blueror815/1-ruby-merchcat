@@ -13,8 +13,8 @@ As a prerequisite to setting up/running the project, you'll need to make sure yo
 Steps to get up and running:
 ---------------------------
 
-1. Clone the project: `$ git clone git@github.com:Appalope/merchcat-aws.git`
-2. Change directories into the `merchcat-aws` directory: `$ cd ~/your/directory/path/merchatcat-aws`
+1. Clone the project: ``
+2. Change directories into the `` directory: ``
 3. Run bundler to install all project dependencies (gems): `$ bundle install`
 4. Install Figaro to handle environement variables: `$ figaro install`
 5. After installing Figaro, you'll now have a new file at `config/application.yml`. This new file (`application.yml`) will be used to store local environment variables and should **never** be commited to source control. When running the `$ figaro install` command from the previous step, this should have added the `applicaiton.yml` to the .gitignore if it didn't already exist.
