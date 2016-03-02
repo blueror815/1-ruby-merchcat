@@ -21,3 +21,5 @@ This is for merchcat company's web site.
 6. hosting: Heroku deploying.
 
 # Portfolio
+
+<img src="merch-1.png" style="width: 100px"/><img src="merch.png" style="width: 100px"/>
