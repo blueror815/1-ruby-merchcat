@@ -22,4 +22,4 @@ This is for merchcat company's web site.
 
 # Portfolio
 
-<img src="merch-1.png" style="width: 100px"/><img src="merch.png" style="width: 100px"/>
+<img src="merch-1.png" style="width: 40%; max-width: 40%"/><img src="merch.png" style="width: 40%; max-width: 40%"/>
