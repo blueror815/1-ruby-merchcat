@@ -1,7 +1,3 @@
-# merchcat.com
-
-This is for merchcat company's web site.
-
 # Technology Used.
 
 1. language: Ruby
